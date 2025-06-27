@@ -1,10 +1,10 @@
 import React from 'react';
-import Inicio from 'src/components/Inicio';
+import inicio from 'src/components/inicio.jsx';
 
 function App() {
   return (
     <main>
-      <Inicio/>
+      <inicio/>
     </main>
   );
 }
