@@ -22,13 +22,13 @@ export default function Inicio() {
 
     return () => clearInterval(interval);
   }, []);
-  {/* script da galeria*/}
+
 
   const imagens = [
-  { src: "src/assets/ex1.jpg", alt: "Prato especial 1" },
-  { src: "src/assets/ex2.jpg", alt: "Sobremesa tropical" },
-  { src: "src/assets/ex3.jpg", alt: "Cocktail da casa" },
-  { src: "src/assets/ex4.jpg", alt: "Chef em ação" },
+  { src: "./assets/ex1.jpg", alt: "Prato especial 1" },
+  { src: "./assets/ex2.jpg", alt: "Sobremesa tropical" },
+  { src: "./assets/ex3.jpg", alt: "Cocktail da casa" },
+  { src: "./assets/ex4.jpg", alt: "Chef em ação" },
 ];
 
 const [imagemAtual, setImagemAtual] = React.useState(0);
