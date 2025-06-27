@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import './inicio.css';
+import './Inicio.css';
 
 export default function Inicio() {
   {/* script dos slides sobre nós */}
