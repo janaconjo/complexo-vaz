@@ -25,10 +25,10 @@ export default function Inicio() {
 
 
   const imagens = [
-  { src: "./assets/ex1.jpg", alt: "Prato especial 1" },
-  { src: "./assets/ex2.jpg", alt: "Sobremesa tropical" },
-  { src: "./assets/ex3.jpg", alt: "Cocktail da casa" },
-  { src: "./assets/ex4.jpg", alt: "Chef em ação" },
+  { src: "src/assets/ex1.jpg", alt: "Prato especial 1" },
+  { src: "src/assets/ex2.jpg", alt: "Sobremesa tropical" },
+  { src: "src/assets/ex3.jpg", alt: "Cocktail da casa" },
+  { src: "src/assets/ex4.jpg", alt: "Chef em ação" },
 ];
 
 const [imagemAtual, setImagemAtual] = React.useState(0);
@@ -43,8 +43,8 @@ const handlePrev = () => {
 
 {/* cript de avaliacaoes*/}
 const [avaliacoes, setAvaliacoes] = React.useState([
-  { nome: 'Carla M.', comentario: 'Ambiente incrível e comida deliciosa! Recomendo muito.' },
-  { nome: 'Ernesto L.', comentario: 'A melhor experiência gastronómica em Maputo. Atendimento 5 estrelas!' }
+  { nome: 'Jana.', comentario: 'Ambiente incrível e comida deliciosa! Recomendo muito.' },
+
 ]);
 
 const [nome, setNome] = React.useState('');
@@ -61,7 +61,7 @@ const handleSubmitAvaliacao = (e) => {
 
   return (
     <div>
-      {/* Header */}
+  
       <header className="header">
         <img src="/assets/logo.png" alt="Logo" className="logo-header" />
         <nav className="nav">
@@ -72,12 +72,12 @@ const handleSubmitAvaliacao = (e) => {
         </nav>
       </header>
 
-      {/* Hero */}
+      
       <section className="hero">
         <div className="hero-content">
           <h1 className="hero-title">
             Mergulhe-se com uma <span className="highlight">Experiência</span><br />
-            Culinary Extraodinária
+            Extraodianária
           </h1>
           <p className="hero-description">
             Descubra uma experiência gastronómica única no Complexo Vaz, onde o nosso menu é uma
@@ -116,7 +116,7 @@ const handleSubmitAvaliacao = (e) => {
         <section id="galeria" className="section galeria">
   <div className="galeria-conteudo">
     <h2>Galeria</h2>
-    <p>Explore alguns dos nossos pratos e momentos especiais no <strong>Bistro Vaz</strong>.</p>
+    <p>Explore alguns dos nossos pratos e momentos especiais no <strong>Complexo Vaz</strong>.</p>
 
     <div className="galeria-layout">
       <div className="galeria-carousel">
@@ -184,32 +184,25 @@ const handleSubmitAvaliacao = (e) => {
 
   <footer className="footer">
   <div className="footer-container">
-    {/* Coluna 1: Logo e descrição */}
+    
     <div className="footer-info">
-      <img src="src/assets/ex1.jpg" alt="Bistro Vaz" className="footer-logo" />
+     
       <p>
-        No Bistro Vaz oferecemos uma experiência vibrante de restaurante e bar, perfeita para jantares,
+        No Complexo Vaz oferecemos uma experiência vibrante de restaurante e bar, perfeita para jantares,
         eventos e relaxar. Descubra o nosso menu requintado e reserve o seu próximo encontro connosco!
       </p>
     </div>
+  
 
     {/* Coluna 2: Contactos */}
     <div className="footer-contactos">
       <p>📞 +258 85 55 46089</p>
-      <p>📧 bistrovaz@gmail.com</p>
+      <p>📧 Complexo Vaz@gmail.com</p>
       <p>📍 123 Av-Albazine, Magoanine, MZ</p>
     </div>
 
-    {/* Coluna 3: Links rápidos */}
-    <div className="footer-links">
-      <h4>Links Rápidos</h4>
-      <a href="#home">Home</a>
-      <a href="#menu">Menu</a>
-      <a href="#eventos">Eventos</a>
-      <a href="#galeria">Galeria</a>
-      <a href="#sobre">Sobre Nós</a>
-      <a href="#contacto">Contacto</a>
-    </div>
+   
+
 
     {/* Coluna 4: Redes Sociais */}
     <div className="footer-social">
