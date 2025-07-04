@@ -25,7 +25,7 @@ export default function Inicio() {
 
 
   const imagens = [
-  { src: "/assets/ex1.jpg", alt: "Prato especial 1" },
+  { src: "/ex1.jpg", alt: "Prato especial 1" },
   { src: "src/assets/ex2.jpg", alt: "Sobremesa tropical" },
   { src: "src/assets/ex3.jpg", alt: "Cocktail da casa" },
   { src: "src/assets/ex4.jpg", alt: "Chef em ação" },
@@ -40,17 +40,47 @@ const handleNext = () => {
 const handlePrev = () => {
   setImagemAtual((prev) => (prev - 1 + imagens.length) % imagens.length);
 };
-
-{/* cript de avaliacaoes*/}
+// Estado de avaliações antigo
 const [avaliacoes, setAvaliacoes] = React.useState([
   { nome: 'Jana.', comentario: 'Ambiente incrível e comida deliciosa! Recomendo muito.' },
-
 ]);
 
+// Estado para o novo upload de fotos
+const [comentarioUpload, setComentarioUpload] = React.useState('');
+const [fotoUpload, setFotoUpload] = React.useState(null);
+const [fotosPartilhadas, setFotosPartilhadas] = React.useState([]);
+
+// Funções para upload
+const handleUploadFoto = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const url = URL.createObjectURL(file);
+    setFotoUpload(url);
+  }
+};
+
+const handleAdicionarFoto = () => {
+  if (fotoUpload) {
+    setFotosPartilhadas([
+      ...fotosPartilhadas,
+      { url: fotoUpload, comentario: comentarioUpload, gostos: 0 }
+    ]);
+    setFotoUpload(null);
+    setComentarioUpload('');
+  }
+};
+
+const handleGostar = (index) => {
+  const novasFotos = fotosPartilhadas.map((foto, i) =>
+    i === index ? { ...foto, gostos: foto.gostos + 1 } : foto
+  );
+  setFotosPartilhadas(novasFotos);
+};
+
+// Outros estados
 const [nome, setNome] = React.useState('');
 const [comentario, setComentario] = React.useState('');
 const [mostrarMais, setMostrarMais] = React.useState(false);
-
 
 const handleSubmitAvaliacao = (e) => {
   e.preventDefault();
@@ -60,6 +90,7 @@ const handleSubmitAvaliacao = (e) => {
     setComentario('');
   }
 };
+
 
   return (
     <div>
@@ -113,23 +144,9 @@ const handleSubmitAvaliacao = (e) => {
       </button>
     </div>
 
-    {/* Se quiseres manter a galeria, podes manter este bloco ou remover */}
-    {/* <div className="sobre-nos-galeria">
-      <div className="galeria-slider" ref={sliderRef}>
-        <div className="slide">
-          <img src="/assets/ex1.jpg" alt="Slide 1" loading="lazy" />
-        </div>
-        <div className="slide">
-          <img src="/assets/ex2.jpg" alt="Slide 2" loading="lazy" />
-        </div>
-        <div className="slide">
-          <img src="/assets/ex3.jpg" alt="Slide 3" loading="lazy" />
-        </div>
-      </div>
-    </div> */}
-  </div>
+    </div>
 
-  {/* MODAL SOBREPOSTO */}
+  {/* saber mais SOBREPOSTO */}
   {mostrarMais && (
     <div className="overlay">
       <div className="modal-card">
@@ -151,53 +168,59 @@ const handleSubmitAvaliacao = (e) => {
 </section>
 
 
-        <section id="galeria" className="section galeria">
-  <div className="galeria-conteudo">
-    <h2>Galeria</h2>
-    <p>Explore alguns dos nossos pratos e momentos especiais no <strong>Complexo Vaz</strong>.</p>
-
-    <div className="galeria-layout">
-      <div className="galeria-carousel">
-        <button className="galeria-btn" onClick={handlePrev}>&larr;</button>
+   <section id="galeria" className="section galeria">
+      <div className="galeria-conteudo">
+        <h2>Galeria</h2>
+        <p>Explore alguns dos nossos pratos e momentos especiais no <strong>Complexo Vaz</strong>.</p>
 
         <div className="galeria-slide">
-          <img src={imagens[imagemAtual].src} alt={imagens[imagemAtual].alt} />
-          <div className="legenda">{imagens[imagemAtual].alt}</div>
+          {fotosPartilhadas.length > 0 ? (
+            <>
+              <img src={fotosPartilhadas[imagemAtual].url} alt={`Foto ${imagemAtual + 1}`} />
+              <div className="legenda">{fotosPartilhadas[imagemAtual].comentario}</div>
+            </>
+          ) : (
+            <p>Não há fotos para mostrar.</p>
+          )}
         </div>
 
-        <button className="galeria-btn" onClick={handleNext}>&rarr;</button>
-      </div>
-
-      {/* Formulário de Avaliação */}
-      <div className="galeria-avaliacoes">
-        <h4>Deixe a sua avaliação</h4>
-        <form onSubmit={handleSubmitAvaliacao} className="form-avaliacao">
-          <input
-            type="text"
-            placeholder="Seu nome"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
-            required
-          />
+        {/* Formulário Upload */}
+        <div className="galeria-upload form-upload">
+          <h4>Partilhe uma foto da sua experiência!</h4>
+          <input type="file" accept="image/*" onChange={handleUploadFoto} />
+          {fotoUpload && <img src={fotoUpload} alt="Preview" className="preview-foto" />}
           <textarea
-            placeholder="Escreva o seu comentário"
-            value={comentario}
-            onChange={(e) => setComentario(e.target.value)}
-            required
+            placeholder="Descreva a sua foto ou deixe um comentário..."
+            value={comentarioUpload}
+            onChange={(e) => setComentarioUpload(e.target.value)}
           ></textarea>
-          <button type="submit">Enviar</button>
-        </form>
+          <button onClick={handleAdicionarFoto} disabled={!fotoUpload}>
+            Publicar
+          </button>
+        </div>
 
-        <h4 style={{ marginTop: '20px' }}>Comentários recentes</h4>
-        {avaliacoes.map((a, index) => (
-          <div key={index} className="avaliacao">
-            <p>"{a.comentario}"<br /><strong>– {a.nome}</strong></p>
-          </div>
-        ))}
+        {/* Galeria de Fotos Partilhadas */}
+        <div className="galeria-fotos-partilhadas fotos-partilhadas">
+          {fotosPartilhadas.length === 0 && (
+            <p style={{ textAlign: 'center', color: '#777', fontStyle: 'italic' }}>
+              Ainda não há fotos partilhadas. Seja o primeiro a partilhar!
+            </p>
+          )}
+
+          {fotosPartilhadas.map((foto, index) => (
+            <div key={index} className="foto-card">
+              <img src={foto.url} alt={`Foto partilhada ${index + 1}`} />
+              <p className="comentario">{foto.comentario}</p>
+              <button onClick={() => handleGostar(index)} aria-label="Gostar da foto">
+                ❤️ {foto.gostos}
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
+  
+
 
 
       {/* Eventos */}
