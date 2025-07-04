@@ -92,16 +92,7 @@ const handleSubmitAvaliacao = (e) => {
       </section>
 
       {/* seccao sobre*/}
-      <section id="sobre" className="section sobre-nos">
-        <div className="sobre-nos-content">
-          <div className="sobre-nos-galeria">
-            <div className="galeria-slider" ref={sliderRef}>
-              <div className="slide"><img src="/assets/ex1.jpg" alt="Slide 1" /></div>
-              <div className="slide"><img src="/assets/ex1.jpg" alt="Slide 2" /></div>
-              <div className="slide"><img src="/assets/ex3.jpg" alt="Slide 3" /></div>
-            </div>
-          </div>
-
+          <section id="sobre" className="section sobre-nos">
           <div className="sobre-nos-texto">
             <h2>Sobre Nós</h2>
             <p>
@@ -111,6 +102,16 @@ const handleSubmitAvaliacao = (e) => {
               proporcionar experiências memoráveis em cada visita.
             </p>
           </div>
+  
+        <div className="sobre-nos-content">
+          <div className="sobre-nos-galeria">
+            <div className="galeria-slider" ref={sliderRef}>
+              <div className="slide"><img src="/assets/ex1.jpg" alt="Slide 1" /></div>
+              <div className="slide"><img src="/assets/ex" alt="Slide 2" /></div>
+              <div className="slide"><img src="/assets/ex3.jpg" alt="Slide 3" /></div>
+            </div>
+          </div>
+
         </div>
       </section>
         <section id="galeria" className="section galeria">
