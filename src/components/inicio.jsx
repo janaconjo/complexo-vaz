@@ -107,23 +107,14 @@ const handleSubmitAvaliacao = (e) => {
 
       <button
         className="btn-saber-mais"
-        onClick={() => setMostrarMais(!mostrarMais)}
+        onClick={() => setMostrarMais(true)}
       >
-        {mostrarMais ? 'Fechar' : 'Saber Mais'}
+        Saber Mais
       </button>
-
-      {mostrarMais && (
-        <div className="card-mais-info">
-          <h3>Mais sobre o Complexo Vaz</h3>
-          <p>
-            Oferecemos experiências personalizadas para eventos especiais, menus exclusivos
-            e um ambiente pensado para surpreender os nossos clientes em cada detalhe.
-          </p>
-        </div>
-      )}
     </div>
 
-    <div className="sobre-nos-galeria">
+    {/* Se quiseres manter a galeria, podes manter este bloco ou remover */}
+    {/* <div className="sobre-nos-galeria">
       <div className="galeria-slider" ref={sliderRef}>
         <div className="slide">
           <img src="/assets/ex1.jpg" alt="Slide 1" loading="lazy" />
@@ -135,8 +126,28 @@ const handleSubmitAvaliacao = (e) => {
           <img src="/assets/ex3.jpg" alt="Slide 3" loading="lazy" />
         </div>
       </div>
-    </div>
+    </div> */}
   </div>
+
+  {/* MODAL SOBREPOSTO */}
+  {mostrarMais && (
+    <div className="overlay">
+      <div className="modal-card">
+        <button
+          className="btn-fechar"
+          onClick={() => setMostrarMais(false)}
+        >
+          ×
+        </button>
+        <h3>Mais sobre o Complexo Vaz</h3>
+        <p>
+          Oferecemos experiências personalizadas para eventos especiais, menus exclusivos
+          e um ambiente pensado para surpreender os nossos clientes em cada detalhe.
+          Desde jantares privados a festas de aniversário, garantimos uma experiência única.
+        </p>
+      </div>
+    </div>
+  )}
 </section>
 
 
