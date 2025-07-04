@@ -174,14 +174,7 @@ const handleSubmitAvaliacao = (e) => {
         <p>Explore alguns dos nossos pratos e momentos especiais no <strong>Complexo Vaz</strong>.</p>
 
         <div className="galeria-slide">
-          {fotosPartilhadas.length > 0 ? (
-            <>
-              <img src={fotosPartilhadas[imagemAtual].url} alt={`Foto ${imagemAtual + 1}`} />
-              <div className="legenda">{fotosPartilhadas[imagemAtual].comentario}</div>
-            </>
-          ) : (
-            <p>Não há fotos para mostrar.</p>
-          )}
+          
         </div>
 
         {/* Formulário Upload */}
@@ -220,17 +213,45 @@ const handleSubmitAvaliacao = (e) => {
       </div>
     </section>
   
+<section id="eventos" className="section eventos">
+  <h2>Eventos</h2>
+  <p className="descricao-eventos">
+    Quer seja para uma celebração íntima ou uma grande festa, o Complexo Vaz é o local ideal para o seu evento. 
+    Descubra as nossas opções personalizadas para tornar o seu momento inesquecível.
+  </p>
+
+  <div className="eventos-cards">
+    <article className="evento-card">
+      <img src="/assets/festa.jpg" alt="Festas Privadas" className="evento-img" />
+      <h3>Festas Privadas</h3>
+      <p>Espaços exclusivos para aniversários, despedidas de solteiro(a) e celebrações com amigos e família.</p>
+    </article>
+
+    <article className="evento-card">
+      <img src="/assets/corporativo (1).jpg" alt="Eventos Corporativos" className="evento-img" />
+      <h3>Eventos Corporativos</h3>
+      <p>Ambiente profissional e acolhedor para reuniões, workshops e celebrações empresariais.</p>
+    </article>
+
+    <article className="evento-card">
+      <img src="/assets/degustacao (1).jpg" alt="Degustações & Cocktails" className="evento-img" />
+      <h3>Degustações & Cocktails</h3>
+      <p>Experiências únicas de cocktails e harmonizações, com especialistas e ambiente descontraído.</p>
+    </article>
+  </div>
+
+  <div className="cta-eventos">
+    <p>Está interessado? <strong>Contacte-nos</strong> para planear o seu evento connosco!</p>
+    <button onClick={() => window.location.href = '#contacto'} className="btn-reservar">
+      Reservar Evento
+    </button>
+  </div>
+</section>
 
 
 
-      {/* Eventos */}
-      <section id="eventos" className="section">
-        <h2>Eventos</h2>
-        <p>
-          Organizamos eventos privados, festas, jantares especiais e muito mais. Entre em contacto
-          para reservar o seu próximo evento connosco.
-        </p>
-      </section>
+   
+
 
       {/* Contacto */}
       <section id="contacto" className="section">
