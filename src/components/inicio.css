@@ -248,6 +248,7 @@
   max-width: 600px;
   color: #222;
   animation: fadeInLeft 1s ease forwards;
+  text-align: center;
 }
 
 .sobre-nos-texto h2 {
@@ -993,19 +994,20 @@
 }
 
 .eventos h2 {
-  font-size: 2.5rem;
+  font-size: 32px;
   margin-bottom: 0.5rem;
-  color: #d96b1c; /* laranja escuro */
+  color: #e07a2d; 
   font-weight: 700;
 }
 
 .descricao-eventos {
   font-size: 1.1rem;
-  color: #66431a; /* castanho alaranjado suave */
+  color: #050505; 
   margin-bottom: 2rem;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+
 }
 
 /* Grid de cards */
@@ -1045,13 +1047,13 @@
 .evento-card h3 {
   font-size: 1.4rem;
   margin-bottom: 0.6rem;
-  color: #b14e00; /* laranja mais escuro */
+  color:  #e07a2d; /* laranja mais escuro */
   font-weight: 600;
 }
 
 .evento-card p {
   font-size: 1rem;
-  color: #66431a;
+  color: #1d1b1b;
   line-height: 1.4;
   flex-grow: 1;
 }
@@ -1064,13 +1066,13 @@
 }
 
 .cta-eventos strong {
-  color: #d96b1c;
-  font-weight: 700;
+  color: #f18029;
+  font-weight: 16px;
 }
 
 .btn-reservar {
   margin-top: 1rem;
-  background-color: #d96b1c;
+  background-color:  #e07a2d;
   color: white;
   padding: 0.8rem 2rem;
   border: none;
