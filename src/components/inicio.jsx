@@ -49,6 +49,8 @@ const [avaliacoes, setAvaliacoes] = React.useState([
 
 const [nome, setNome] = React.useState('');
 const [comentario, setComentario] = React.useState('');
+const [mostrarMais, setMostrarMais] = React.useState(false);
+
 
 const handleSubmitAvaliacao = (e) => {
   e.preventDefault();
@@ -91,29 +93,53 @@ const handleSubmitAvaliacao = (e) => {
         </div>
       </section>
 
-      {/* seccao sobre*/}
-          <section id="sobre" className="section sobre-nos">
-          <div className="sobre-nos-texto">
-            <h2>Sobre Nós</h2>
-            <p>
-              No Complexo Vaz, valorizamos a excelência gastronómica, o ambiente acolhedor e um
-              serviço que faz sentir-se em casa. Criámos este espaço para partilhar sabores únicos
-              e momentos especiais. A nossa equipa é apaixonada pela arte culinária e dedicada a
-              proporcionar experiências memoráveis em cada visita.
-            </p>
-          </div>
-  
-        <div className="sobre-nos-content">
-          <div className="sobre-nos-galeria">
-            <div className="galeria-slider" ref={sliderRef}>
-              <div className="slide"><img src="/assets/ex1.jpg" alt="Slide 1" /></div>
-              <div className="slide"><img src="/assets/ex" alt="Slide 2" /></div>
-              <div className="slide"><img src="/assets/ex3.jpg" alt="Slide 3" /></div>
-            </div>
-          </div>
+{/* Seção Sobre Nós */}
+<section id="sobre" className="section sobre-nos">
+  <div className="sobre-nos-container">
+    <div className="sobre-nos-texto">
+      <h2>Sobre Nós</h2>
+      <p>
+        No <strong>Complexo Vaz</strong>, valorizamos a excelência gastronómica, o ambiente acolhedor e um
+        serviço que faz sentir-se em casa. Criámos este espaço para partilhar <strong>sabores únicos</strong>
+        e momentos especiais. A nossa equipa é apaixonada pela arte culinária e dedicada a
+        proporcionar experiências memoráveis em cada visita.
+      </p>
 
+      <button
+        className="btn-saber-mais"
+        onClick={() => setMostrarMais(!mostrarMais)}
+      >
+        {mostrarMais ? 'Fechar' : 'Saber Mais'}
+      </button>
+
+      {mostrarMais && (
+        <div className="card-mais-info">
+          <h3>Mais sobre o Complexo Vaz</h3>
+          <p>
+            Oferecemos experiências personalizadas para eventos especiais, menus exclusivos
+            e um ambiente pensado para surpreender os nossos clientes em cada detalhe.
+          </p>
         </div>
-      </section>
+      )}
+    </div>
+
+    <div className="sobre-nos-galeria">
+      <div className="galeria-slider" ref={sliderRef}>
+        <div className="slide">
+          <img src="/assets/ex1.jpg" alt="Slide 1" loading="lazy" />
+        </div>
+        <div className="slide">
+          <img src="/assets/ex2.jpg" alt="Slide 2" loading="lazy" />
+        </div>
+        <div className="slide">
+          <img src="/assets/ex3.jpg" alt="Slide 3" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
         <section id="galeria" className="section galeria">
   <div className="galeria-conteudo">
     <h2>Galeria</h2>

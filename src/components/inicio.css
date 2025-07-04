@@ -234,22 +234,128 @@
   box-shadow: 0 6px 15px rgba(224, 122, 45, 0.2);
 }
 
+/* Container geral em Grid ou Flex */
+.sobre-nos-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
 .sobre-nos-texto {
   flex: 1 1 400px;
   max-width: 600px;
   color: #222;
+  animation: fadeInLeft 1s ease forwards;
 }
 
 .sobre-nos-texto h2 {
-  font-size: 32px;
+  font-size: 2.2rem;
   margin-bottom: 15px;
+  color: #333;
 }
 
 .sobre-nos-texto p {
-  font-size: 17px;
+  font-size: 1.1rem;
   line-height: 1.6;
   color: #555;
 }
+
+.sobre-nos-texto strong {
+  color: #e07a2d;
+}
+
+.btn-saber-mais {
+  display: inline-block;
+  margin-top: 20px;
+  background-color: #e07a2d;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-saber-mais:hover {
+  background-color: #c7681d;
+  transform: translateY(-2px);
+}
+
+
+/* Galeria */
+.sobre-nos-galeria {
+  flex: 1 1 400px;
+  max-width: 600px;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  animation: fadeInRight 1s ease forwards;
+}
+
+.galeria-slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* Animações */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .sobre-nos-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .sobre-nos-texto,
+  .sobre-nos-galeria {
+    max-width: 100%;
+  }
+
+  .sobre-nos-texto h2 {
+    font-size: 1.8rem;
+  }
+
+  .sobre-nos-texto p {
+    font-size: 1rem;
+  }
+}
+
 
 .galeria-slider {
   display: flex;
