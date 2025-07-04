@@ -87,7 +87,7 @@ const handleSubmitAvaliacao = (e) => {
         </div>
 
         <div className="hero-image">
-          <img src="src/assets/ex1.jpg" alt="Restaurante" />
+          <img src="/assets/ex1.jpg" alt="Restaurante" />
         </div>
       </section>
 
@@ -97,7 +97,7 @@ const handleSubmitAvaliacao = (e) => {
           <div className="sobre-nos-galeria">
             <div className="galeria-slider" ref={sliderRef}>
               <div className="slide"><img src="/assets/ex1.jpg" alt="Slide 1" /></div>
-              <div className="slide"><img src="/assets/ex2.jpg" alt="Slide 2" /></div>
+              <div className="slide"><img src="/assets/ex1.jpg" alt="Slide 2" /></div>
               <div className="slide"><img src="/assets/ex3.jpg" alt="Slide 3" /></div>
             </div>
           </div>
