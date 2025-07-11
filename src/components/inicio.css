@@ -337,6 +337,250 @@
   border-radius: 20px;
 }
 
+/* === GALERIA === */
+.galeria {
+  background: #fff3e5;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.galeria h2 {
+  font-size: 2.4rem;
+  color: #333;
+  margin-bottom: 10px;
+  animation: fadeInDown 1s ease forwards;
+}
+
+.galeria p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 50px;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-auto-rows: 250px;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.galeria-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  animation: fadeZoom 0.8s ease forwards;
+  display: flex;
+}
+
+.galeria-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* GARANTE que a imagem preenche sem distorcer */
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.galeria-item .overlay {
+  position: absolute;
+  inset: 0; /* top, right, bottom, left = 0 */
+  background: rgba(41, 41, 41, 0.6);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.galeria-item:hover img {
+  transform: scale(1.1);
+}
+
+.galeria-item:hover .overlay {
+  opacity: 1;
+}
+
+/* Modificadores para layout dinâmico */
+.galeria-item.tall {
+  grid-row: span 2;
+}
+
+.galeria-item.wide {
+  grid-column: span 2;
+}
+
+/* Animações */
+@keyframes fadeZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsivo para grid quebrar suave */
+@media (max-width: 768px) {
+  .galeria-item.tall,
+  .galeria-item.wide {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+/* === GALERIA COMPLETA AJUSTADA === */
+
+.galeria {
+  background: #fff3e5;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.galeria h2 {
+  font-size: 2.4rem;
+  color: #333;
+  margin-bottom: 10px;
+  animation: fadeInDown 1s ease forwards;
+}
+
+.galeria p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 50px;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-auto-rows: 250px;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.galeria-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  animation: fadeZoom 0.8s ease forwards;
+  display: flex;
+  align-items: stretch; /* garante altura total para a imagem */
+}
+
+.galeria-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+  flex-shrink: 0;
+
+  /* Para imagens nítidas, evitando borrões */
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.galeria-item .overlay {
+  position: absolute;
+  inset: 0; /* top, right, bottom, left = 0 */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  border-radius: 20px; /* para acompanhar o contorno */
+  pointer-events: none; /* deixa o hover passar para o card */
+}
+
+.galeria-item:hover img {
+  transform: scale(1.05); /* escala suave */
+}
+
+.galeria-item:hover .overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Modificadores para layout dinâmico */
+.galeria-item.tall {
+  grid-row: span 2;
+}
+
+.galeria-item.wide {
+  grid-column: span 2;
+}
+
+/* Animações */
+@keyframes fadeZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsividade para telemóveis */
+@media (max-width: 768px) {
+  .galeria-grid {
+    grid-template-columns: 1fr !important;
+    grid-auto-rows: 200px;
+  }
+
+  .galeria-item.tall,
+  .galeria-item.wide {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+  }
+
+  .galeria h2 {
+    font-size: 2rem;
+  }
+
+  .galeria p {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+
+  .galeria {
+    padding: 40px 15px;
+  }
+}
 
 /*Eventos*/
 .eventos {

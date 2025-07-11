@@ -132,8 +132,7 @@ const handleSubmitAvaliacao = (e) => {
       <p>
         No <strong>Complexo Vaz</strong>, valorizamos a excelência gastronómica, o ambiente acolhedor e um
         serviço que faz sentir-se em casa. Criámos este espaço para partilhar <strong>sabores únicos</strong>
-        e momentos especiais. A nossa equipa é apaixonada pela arte culinária e dedicada a
-        proporcionar experiências memoráveis em cada visita.
+        e momentos especiais. 
       </p>
 
       <button
@@ -171,50 +170,42 @@ const handleSubmitAvaliacao = (e) => {
 </section>
 
 
-   <section id="galeria" className="section galeria">
-      <div className="galeria-conteudo">
-        <h2>Galeria</h2>
-        <p>Explore alguns dos nossos pratos e momentos especiais no <strong>Complexo Vaz</strong>.</p>
+  <section id="galeria" className="section galeria">
+  <div className="galeria-conteudo">
+    <h2>Galeria</h2>
+    <p>
+      Explore alguns dos nossos pratos e momentos especiais no <strong>Complexo Vaz</strong>.
+    </p>
 
-        <div className="galeria-slide">
-          
-        </div>
-
-        {/* Formulário Upload */}
-        <div className="galeria-upload form-upload">
-          <h4>Partilhe uma foto da sua experiência!</h4>
-          <input type="file" accept="image/*" onChange={handleUploadFoto} />
-          {fotoUpload && <img src={fotoUpload} alt="Preview" className="preview-foto" />}
-          <textarea
-            placeholder="Descreva a sua foto ou deixe um comentário..."
-            value={comentarioUpload}
-            onChange={(e) => setComentarioUpload(e.target.value)}
-          ></textarea>
-          <button onClick={handleAdicionarFoto} disabled={!fotoUpload}>
-            Publicar
-          </button>
-        </div>
-
-        {/* Galeria de Fotos Partilhadas */}
-        <div className="galeria-fotos-partilhadas fotos-partilhadas">
-          {fotosPartilhadas.length === 0 && (
-            <p style={{ textAlign: 'center', color: '#777', fontStyle: 'italic' }}>
-              Ainda não há fotos partilhadas. Seja o primeiro a partilhar!
-            </p>
-          )}
-
-          {fotosPartilhadas.map((foto, index) => (
-            <div key={index} className="foto-card">
-              <img src={foto.url} alt={`Foto partilhada ${index + 1}`} />
-              <p className="comentario">{foto.comentario}</p>
-              <button onClick={() => handleGostar(index)} aria-label="Gostar da foto">
-                ❤️ {foto.gostos}
-              </button>
-            </div>
-          ))}
-        </div>
+    <div className="galeria-grid">
+      <div className="galeria-item tall">
+        <img src="/assets/ex1.jpg" alt="Prato 1" />
+        <div className="overlay">Prato Especial</div>
       </div>
-    </section>
+      <div className="galeria-item wide">
+        <img src="/assets/ex1.jpg" alt="Prato 2" />
+        <div className="overlay">Chef's Choice</div>
+      </div>
+      <div className="galeria-item">
+        <img src="/assets/ex1.jpg" alt="Prato 3" />
+        <div className="overlay">Ambiente</div>
+      </div>
+      <div className="galeria-item tall">
+        <img src="/imagens/prato4.jpg" alt="Prato 4" />
+        <div className="overlay">Detalhe Gourmet</div>
+      </div>
+      <div className="galeria-item">
+        <img src="/imagens/prato5.jpg" alt="Prato 5" />
+        <div className="overlay">Drink Especial</div>
+      </div>
+      <div className="galeria-item wide">
+        <img src="/imagens/prato6.jpg" alt="Prato 6" />
+        <div className="overlay">Sobremesa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
   
 <section id="eventos" className="section eventos">
   <h2>Eventos</h2>
