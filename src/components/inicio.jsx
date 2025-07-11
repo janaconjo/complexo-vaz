@@ -143,6 +143,9 @@ const handleSubmitAvaliacao = (e) => {
         Saber Mais
       </button>
     </div>
+    <div className="sobre-nos-imagem-card">
+      <img src="/assets/ex1.jpg" alt="Sobre nós" />
+    </div>
 
     </div>
 
@@ -263,6 +266,8 @@ const handleSubmitAvaliacao = (e) => {
           <button type="submit">Enviar</button>
         </form>
       </section>
+
+       {/* footer */}
 
   <footer className="footer">
   <div className="footer-container">
