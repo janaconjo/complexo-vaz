@@ -1,96 +1,43 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './inicio.css';
 
 export default function Inicio() {
-  {/* script dos slides sobre nós */}
-  const sliderRef = useRef(null);
+  const imagens = [
+    { src: '/assets/degustacao (1).jpg', descricao: ' Degustacao' },
+    { src: '/assets/corporativo (1).jpg', descricao: 'Corporativo' },
+    { src: '/assets/festa.jpg', descricao: 'Dia de festa' },
+    { src: '/assets/ex1.jpg', descricao: 'o complexo' },
+    { src: '/assets/degustacao (1).jpg', descricao: 'blaaaaa' }
+  ];
+
+  const [index, setIndex] = useState(0);
+  const [mostrarMais, setMostrarMais] = useState(false);
+
+  const anterior = () => {
+    setIndex(prevIndex =>
+      prevIndex === 0 ? imagens.length - 1 : prevIndex - 1
+    );
+  };
+
+  const proximo = () => {
+    setIndex(prevIndex =>
+      prevIndex === imagens.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const autoplayRef = useRef(null);
 
   useEffect(() => {
-    const slider = sliderRef.current;
-    let index = 0;
+    autoplayRef.current = proximo;
+  });
 
-    const interval = setInterval(() => {
-      if (slider) {
-        const slides = slider.children;
-        index = (index + 1) % slides.length;
-        slider.scrollTo({
-          left: index * slider.clientWidth,
-          behavior: 'smooth'
-        });
-      }
-    }, 3000);
-
+  useEffect(() => {
+    const play = () => {
+      autoplayRef.current();
+    };
+    const interval = setInterval(play, 5000); // muda de 5 em 5 segundos
     return () => clearInterval(interval);
   }, []);
-
-
-  const imagens = [
-  { src: "/ex1.jpg", alt: "Prato especial 1" },
-  { src: "src/assets/ex2.jpg", alt: "Sobremesa tropical" },
-  { src: "src/assets/ex3.jpg", alt: "Cocktail da casa" },
-  { src: "src/assets/ex4.jpg", alt: "Chef em ação" },
-];
-
-const [imagemAtual, setImagemAtual] = React.useState(0);
-
-const handleNext = () => {
-  setImagemAtual((prev) => (prev + 1) % imagens.length);
-};
-
-const handlePrev = () => {
-  setImagemAtual((prev) => (prev - 1 + imagens.length) % imagens.length);
-};
-// Estado de avaliações antigo
-const [avaliacoes, setAvaliacoes] = React.useState([
-  { nome: 'Jana.', comentario: 'Ambiente incrível e comida deliciosa! Recomendo muito.' },
-]);
-
-// Estado para o novo upload de fotos
-const [comentarioUpload, setComentarioUpload] = React.useState('');
-const [fotoUpload, setFotoUpload] = React.useState(null);
-const [fotosPartilhadas, setFotosPartilhadas] = React.useState([]);
-
-// Funções para upload
-const handleUploadFoto = (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    const url = URL.createObjectURL(file);
-    setFotoUpload(url);
-  }
-};
-
-const handleAdicionarFoto = () => {
-  if (fotoUpload) {
-    setFotosPartilhadas([
-      ...fotosPartilhadas,
-      { url: fotoUpload, comentario: comentarioUpload, gostos: 0 }
-    ]);
-    setFotoUpload(null);
-    setComentarioUpload('');
-  }
-};
-
-const handleGostar = (index) => {
-  const novasFotos = fotosPartilhadas.map((foto, i) =>
-    i === index ? { ...foto, gostos: foto.gostos + 1 } : foto
-  );
-  setFotosPartilhadas(novasFotos);
-};
-
-// Outros estados
-const [nome, setNome] = React.useState('');
-const [comentario, setComentario] = React.useState('');
-const [mostrarMais, setMostrarMais] = React.useState(false);
-
-const handleSubmitAvaliacao = (e) => {
-  e.preventDefault();
-  if (nome && comentario) {
-    setAvaliacoes([...avaliacoes, { nome, comentario }]);
-    setNome('');
-    setComentario('');
-  }
-};
-
 
   return (
     <div>
@@ -170,38 +117,35 @@ const handleSubmitAvaliacao = (e) => {
 </section>
 
 
-  <section id="galeria" className="section galeria">
+{/* GALERIA */}
+<section id="galeria" className="section galeria">
   <div className="galeria-conteudo">
     <h2>Galeria</h2>
     <p>
       Explore alguns dos nossos pratos e momentos especiais no <strong>Complexo Vaz</strong>.
     </p>
 
-    <div className="galeria-grid">
-      <div className="galeria-item tall">
-        <img src="/assets/ex1.jpg" alt="Prato 1" />
-        <div className="overlay">Prato Especial</div>
+    <div className="slider">
+   
+      <div className="slider-imagem-container">
+        <img
+          src={imagens[index].src}
+          alt={`Prato ${index + 1}`}
+          className="slide-imagem fade"
+        />
+        <p className="slide-legenda">{imagens[index].descricao}</p>
       </div>
-      <div className="galeria-item wide">
-        <img src="/assets/ex1.jpg" alt="Prato 2" />
-        <div className="overlay">Chef's Choice</div>
-      </div>
-      <div className="galeria-item">
-        <img src="/assets/ex1.jpg" alt="Prato 3" />
-        <div className="overlay">Ambiente</div>
-      </div>
-      <div className="galeria-item tall">
-        <img src="/imagens/prato4.jpg" alt="Prato 4" />
-        <div className="overlay">Detalhe Gourmet</div>
-      </div>
-      <div className="galeria-item">
-        <img src="/imagens/prato5.jpg" alt="Prato 5" />
-        <div className="overlay">Drink Especial</div>
-      </div>
-      <div className="galeria-item wide">
-        <img src="/imagens/prato6.jpg" alt="Prato 6" />
-        <div className="overlay">Sobremesa</div>
-      </div>
+      
+    </div>
+
+    <div className="slider-bolinhas">
+      {imagens.map((_, i) => (
+        <span
+          key={i}
+          className={index === i ? 'active' : ''}
+          onClick={() => setIndex(i)}
+        ></span>
+      ))}
     </div>
   </div>
 </section>
@@ -234,12 +178,7 @@ const handleSubmitAvaliacao = (e) => {
     </article>
   </div>
 
-  <div className="cta-eventos">
-    <p>Está interessado? <strong>Contacte-nos</strong> para planear o seu evento connosco!</p>
-    <button onClick={() => window.location.href = '#contacto'} className="btn-reservar">
-      Reservar Evento
-    </button>
-  </div>
+
 </section>
 
 
