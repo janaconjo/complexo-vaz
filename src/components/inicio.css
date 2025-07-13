@@ -180,18 +180,28 @@
 }
 
 .sobre-nos-texto {
-  flex: 1 1 400px;
-  max-width: 600px;
+   font-size: 2.3rem;
   color: #222;
   text-align: center;
-  animation: fadeInUp 1s ease forwards;
+  
 }
 
 .sobre-nos-texto h2 {
-  font-size: 2.4rem;
-  margin-bottom: 20px;
-  color: #333;
-  animation: fadeInDown 1s ease forwards;
+
+  color: #2c2c2c;
+  margin-bottom: 10px;
+  position: relative;
+  display: inline-block;
+ 
+}
+.sobre-nos-texto h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #ff914d;
+  margin: 10px auto 0;
+  border-radius: 2px;
 }
 
 .sobre-nos-texto p {
@@ -337,12 +347,10 @@
   border-radius: 20px;
 }
 
-/* ===========================
-   === GALERIA PREMIUM ===
-   =========================== */
+/*GALERIA  */
 
 .galeria {
-  background: radial-gradient(circle at center, #fff3e5 0%, #ffe8cc 100%);
+  background: linear-gradient(to right, #ffffff, #fff3e5);
   padding: 100px 20px;
   text-align: center;
   position: relative;
@@ -355,7 +363,7 @@
 }
 
 .galeria h2 {
-  font-size: 2.8rem;
+  font-size: 2.3rem;
   color: #2c2c2c;
   margin-bottom: 10px;
   position: relative;
@@ -504,9 +512,9 @@
   }
 }
 
-/*Galeria*/
 
-/* Secção de contacto */
+
+/* contacto */
 #contacto {
   display: flex;
   flex-direction: column;  
@@ -515,7 +523,23 @@
   text-align: center;     
   padding: 60px 20px;     
 }
-
+ #contacto h2{ 
+  font-size: 2.3rem;
+  color: #2c2c2c;
+  margin-bottom: 10px;
+  position: relative;
+  display: inline-block;
+ }
+ #contacto h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #ff914d;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+ 
 
 .form-contacto {
   display: flex;
@@ -589,18 +613,30 @@
 /*Eventos*/
 .eventos {
   padding: 3rem 2rem;
-  background: linear-gradient(135deg, #fff5eb 0%, #ffe7cc 100%);
-  max-width: 1100px;
-  margin: 0 auto;
+  background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+  max-width: 1400px;
+  margin: 20px;
   text-align: center;
 }
 
 .eventos h2 {
-  font-size: 32px;
-  margin-bottom: 0.5rem;
-  color: #e07a2d; 
-  font-weight: 700;
+  font-size: 2.3rem;
+  color: #2c2c2c;
+  margin-bottom: 10px;
+  position: relative;
+  display: inline-block;
 }
+.eventos h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #ff914d;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+
 
 .descricao-eventos {
   font-size: 1.1rem;
