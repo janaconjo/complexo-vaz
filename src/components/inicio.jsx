@@ -35,9 +35,17 @@ export default function Inicio() {
     const play = () => {
       autoplayRef.current();
     };
-    const interval = setInterval(play, 5000); // muda de 5 em 5 segundos
+    const interval = setInterval(play, 5000); 
     return () => clearInterval(interval);
   }, []);
+  const [depIndex, setDepIndex] = useState(0);
+
+const depoimentos = [
+  { texto: "Adorámos a experiência, comida deliciosa e ambiente acolhedor!", autor: "Ernesto Vaz" },
+  { texto: "Sem dúvida o melhor restaurante da cidade.", autor: "Alexandre Muianga" },
+  { texto: "Voltaremos em breve com toda a família!", autor: "Jana Conjo" },
+];
+
 
   return (
     <div>
@@ -67,35 +75,32 @@ export default function Inicio() {
         </div>
 
         <div className="hero-image">
-          <img src="/assets/ex1.jpg" alt="Restaurante" />
+          <img src="/assets/ex1.jpg" alt="Restaurante" loading="lazy"/>
         </div>
       </section>
 
 {/* Seção Sobre Nós */}
 <section id="sobre" className="section sobre-nos">
   <div className="sobre-nos-container">
-    <div className="sobre-nos-texto">
-      <h2>Sobre Nós</h2>
-      <p>
-        No <strong>Complexo Vaz</strong>, valorizamos a excelência gastronómica, o ambiente acolhedor e um
-        serviço que faz sentir-se em casa. Criámos este espaço para partilhar <strong>sabores únicos</strong>
-        e momentos especiais. 
-      </p>
-
-      <button
-        className="btn-saber-mais"
-        onClick={() => setMostrarMais(true)}
-      >
-        Saber Mais
-      </button>
+    <div className="sobre-nos-card">
+      <div className="sobre-nos-texto">
+        <h2>Sobre Nós</h2>
+        <p>
+          No <strong>Complexo Vaz</strong>, valorizamos a excelência gastronómica, o ambiente acolhedor
+          e um serviço que faz sentir-se em casa. Criámos este espaço para partilhar <strong>sabores únicos</strong>
+          e momentos especiais.
+        </p>
+        <button
+          className="btn-saber-mais"
+          onClick={() => setMostrarMais(true)}
+        >
+          Saber Mais
+        </button>
+      </div>
     </div>
-    <div className="sobre-nos-imagem-card">
-      <img src="/assets/ex1.jpg" alt="Sobre nós" />
-    </div>
+  </div>
 
-    </div>
-
-  {/* saber mais SOBREPOSTO */}
+  {/* Modal Sobreposto */}
   {mostrarMais && (
     <div className="overlay">
       <div className="modal-card">
@@ -105,12 +110,19 @@ export default function Inicio() {
         >
           ×
         </button>
-        <h3>Mais sobre o Complexo Vaz</h3>
-        <p>
-          Oferecemos experiências personalizadas para eventos especiais, menus exclusivos
-          e um ambiente pensado para surpreender os nossos clientes em cada detalhe.
-          Desde jantares privados a festas de aniversário, garantimos uma experiência única.
-        </p>
+        <div className="modal-content">
+          <div className="modal-texto">
+            <h3>Mais sobre o Complexo Vaz</h3>
+            <p>
+              Oferecemos experiências personalizadas para eventos especiais, menus exclusivos
+              e um ambiente pensado para surpreender os nossos clientes em cada detalhe.
+              Desde jantares privados a festas de aniversário, garantimos uma experiência única.
+            </p>
+          </div>
+          <div className="modal-imagem">
+            <img src="/assets/ex1.jpg" alt="Mais sobre nós" loading="lazy"/>
+          </div>
+        </div>
       </div>
     </div>
   )}
@@ -131,7 +143,7 @@ export default function Inicio() {
         <img
           src={imagens[index].src}
           alt={`Prato ${index + 1}`}
-          className="slide-imagem fade"
+          className="slide-imagem fade" loading="lazy"
         />
         <p className="slide-legenda">{imagens[index].descricao}</p>
       </div>
@@ -147,6 +159,23 @@ export default function Inicio() {
         ></span>
       ))}
     </div>
+    <div className="depoimentos">
+  <h3>O que dizem sobre nós</h3>
+  <div className="depoimento-card">
+    <p>"{depoimentos[depIndex].texto}"</p>
+    <span>- {depoimentos[depIndex].autor}</span>
+  </div>
+  <div className="depoimentos-bolinhas">
+    {depoimentos.map((_, i) => (
+      <span
+        key={i}
+        className={depIndex === i ? 'active' : ''}
+        onClick={() => setDepIndex(i)}
+      ></span>
+    ))}
+  </div>
+</div>
+
   </div>
 </section>
 
@@ -160,19 +189,19 @@ export default function Inicio() {
 
   <div className="eventos-cards">
     <article className="evento-card">
-      <img src="/assets/festa.jpg" alt="Festas Privadas" className="evento-img" />
+      <img src="/assets/festa.jpg" alt="Festas Privadas" className="evento-img" loading="lazy"/>
       <h3>Festas Privadas</h3>
       <p>Espaços exclusivos para aniversários, despedidas de solteiro(a) e celebrações com amigos e família.</p>
     </article>
 
     <article className="evento-card">
-      <img src="/assets/corporativo (1).jpg" alt="Eventos Corporativos" className="evento-img" />
+      <img src="/assets/corporativo (1).jpg" alt="Eventos Corporativos" className="evento-img" loading="lazy" />
       <h3>Eventos Corporativos</h3>
       <p>Ambiente profissional e acolhedor para reuniões, workshops e celebrações empresariais.</p>
     </article>
 
     <article className="evento-card">
-      <img src="/assets/degustacao (1).jpg" alt="Degustações & Cocktails" className="evento-img" />
+      <img src="/assets/degustacao (1).jpg" alt="Degustações & Cocktails" className="evento-img" loading="lazy" />
       <h3>Degustações & Cocktails</h3>
       <p>Experiências únicas de cocktails e harmonizações, com especialistas e ambiente descontraído.</p>
     </article>
@@ -180,13 +209,7 @@ export default function Inicio() {
 
 
 </section>
-
-
-
-   
-
-
-      {/* Contacto */}
+{/* Contacto */}
       <section id="contacto" className="section">
         <h2>Contacto</h2>
         <form className="form-contacto">
@@ -209,19 +232,12 @@ export default function Inicio() {
         eventos e relaxar. Descubra o nosso menu requintado e reserve o seu próximo encontro connosco!
       </p>
     </div>
-  
-
-    {/* Coluna 2: Contactos */}
     <div className="footer-contactos">
       <p>📞 +258 85 55 46089</p>
       <p>📧 Complexo Vaz@gmail.com</p>
       <p>📍 123 Av-Albazine, Magoanine, MZ</p>
     </div>
 
-   
-
-
-    {/* Coluna 4: Redes Sociais */}
     <div className="footer-social">
       <h4>Siga-nos</h4>
       <div className="social-icons">
@@ -234,7 +250,6 @@ export default function Inicio() {
     </div>
   </div>
 
-  {/* Rodapé final - por baixo de tudo */}
   <div className="footer-bottom">
     <p>&copy; {new Date().getFullYear()} Complexo Vaz. Todos os direitos reservados.</p>
   </div>
