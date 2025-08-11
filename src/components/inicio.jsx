@@ -2,71 +2,76 @@ import React, { useState, useEffect, useRef } from 'react';
 import './inicio.css';
 const catalogoBasico = {
   Vinhos: [
-    { nome: "", preco: "700 MZN (garrafa)", foto: "/assets/vinho (1).jpg"},
-    { nome: "", preco: "750 MZN (garrafa)", foto: "/assets/vinho2.jpg" },
-    { nome: "", preco: "400 MZN (garrafa)", foto: "/assets/vinho3.jpg" },
-    { nome: "", preco: "450 MZN (garrafa)", foto: "/assets/vinho4.jpg" },
+    { nome: "Cabriz", preco: "700 MZN (garrafa)", foto: "/assets/vinho (1).jpg"},
+    { nome: "Dona Ermelinda", preco: "750 meticais (garrafa)", img: "/imagens/vinhos/dona_ermelinda.jpg" },
+    { nome: "Alanda", preco: "400 meticais (garrafa)", img: "/imagens/vinhos/alanda.jpg" },
+    { nome: "Gordon", preco: "450 meticais (garrafa)", img: "/imagens/vinhos/gordon.jpg" },
   ],
   Bebidas: [
-    { nome: "", preco: "800 MZN", foto: "/assets/amarula.jpg" },
-    { nome: "", preco: "500 MZN (garrafa)", foto: "/assets/wild_africa.jpg" },
-    { nome: "", preco: "65 MZN", foto: "/assets/2m.jpg" },
-    { nome: "", preco: "55 MZN", foto: "/assets/impala.jpg" },
-    { nome: "", preco: "25/50 MZN (garrafa/lata)", foto: "/assets/cocacola.jpg" },
+    { nome: "Amarula Normal", preco: "800 meticais", img: "/imagens/bebidas/amarula.jpg" },
+    { nome: "Wild África", preco: "500 meticais (garrafa)", img: "/imagens/bebidas/wild_africa.jpg" },
+    { nome: "2M (garrafa)", preco: "65 meticais", img: "/assets/cerveja.jpg" },
+    { nome: "2M (txoti)", preco: "50 meticais", img: "/imagens/bebidas/2m.jpg" },
+   
   ],
   Comidas: [
-    { nome: "", preco: "250 MZN", foto: "/assets/frango_batata.jpg" },
-    { nome: "", preco: "500 MZN", foto: "/assets/carne_porco.jpg" },
-    { nome: "", preco: "750 MZN", foto: "/assets/peixe_vermelho.jpg" },
+   { nome: "Frango c/ batata e salada", preco: "250 meticais", img: "/assets/frango.jpg" },
+    { nome: "Frango c/ arroz e salada", preco: "200 meticais", img: "/imagens/comidas/frango_arroz.jpg" },
+    { nome: "Frango c/ xima e salada", preco: "200 meticais", img: "/imagens/comidas/frango_xima.jpg" },
+    { nome: "Frango inteiro c/ xima", preco: "750 meticais", img: "/imagens/comidas/frango_inteiro.jpg" },
   ],
 };
 
-// Menu completo (mais detalhado)
+//! Menu completo 
 const menuCompleto = {
   Vinhos: [
-    "Cabriz: 700 meticais (garrafa)",
-    "Dona Ermelinda: 750 meticais (garrafa)",
-    "Alanda: 400 meticais (garrafa)",
-    "Gordon: 450 meticais (garrafa)",
+    { nome: "Cabriz", preco: "700 meticais (garrafa)", img: "/assets/vinho (1).jpg" },
+    { nome: "Dona Ermelinda", preco: "750 meticais (garrafa)", img: "/imagens/vinhos/dona_ermelinda.jpg" },
+    { nome: "Alanda", preco: "400 meticais (garrafa)", img: "/imagens/vinhos/alanda.jpg" },
+    { nome: "Gordon", preco: "450 meticais (garrafa)", img: "/imagens/vinhos/gordon.jpg" },
   ],
   Bebidas: [
-    "Amarula Normal: 800 meticais",
-    "Wild África: 500 meticais (garrafa)",
-    "Cervejas:",
-    "  - 2M: 65 meticais (garrafa), 50 meticais (txoti)",
-    "  - Impala: 55 meticais (garrafa), 50 meticais (lata)",
-    "  - Txilar: 50 meticais (garrafa)",
-    "  - Heineken: 80 meticais (txoti)",
-    "  - Hunter Gold: 65 meticais",
-    "  - Brutal: 80 meticais",
-    "  - Savana Dry: 80 meticais",
-    "  - Savana Lemone: 85 meticais",
-    "  - May Faire: 75 meticais",
-    "  - JC: 75 meticais",
-    "  - Castel Lite: 65 meticais",
-    "Refrigerantes e Sumos:",
-    "  - Coca Cola: 25/50 meticais (garrafa/lata)",
-    "  - Fanta: 25/50 meticais (garrafa/lata)",
-    "  - Sprite: 25/50 meticais (garrafa/lata)",
-    "  - Sumo Compal: 130 meticais (1L), 65 meticais (0,5L)",
-    "  - Suminhos: 25 meticais",
-    "  - Água: 50 meticais (grande), 25 meticais (pequena)",
+    { nome: "Amarula Normal", preco: "800 meticais", img: "/imagens/bebidas/amarula.jpg" },
+    { nome: "Wild África", preco: "500 meticais (garrafa)", img: "/imagens/bebidas/wild_africa.jpg" },
+    { nome: "2M (garrafa)", preco: "65 meticais", img: "/assets/cerveja.jpg" },
+    { nome: "2M (txoti)", preco: "50 meticais", img: "/imagens/bebidas/2m.jpg" },
+    { nome: "Impala (garrafa)", preco: "55 meticais", img: "/imagens/bebidas/impala.jpg" },
+    { nome: "Impala (lata)", preco: "50 meticais", img: "/imagens/bebidas/impala.jpg" },
+    { nome: "Txilar", preco: "50 meticais", img: "/imagens/bebidas/txilar.jpg" },
+    { nome: "Heineken (txoti)", preco: "80 meticais", img: "/imagens/bebidas/heineken.jpg" },
+    { nome: "Hunter Gold", preco: "65 meticais", img: "/imagens/bebidas/hunter.jpg" },
+    { nome: "Brutal", preco: "80 meticais", img: "/imagens/bebidas/brutal.jpg" },
+    { nome: "Savana Dry", preco: "80 meticais", img: "/imagens/bebidas/savana_dry.jpg" },
+    { nome: "Savana Lemone", preco: "85 meticais", img: "/imagens/bebidas/savana_lemone.jpg" },
+    { nome: "May Faire", preco: "75 meticais", img: "/imagens/bebidas/may_faire.jpg" },
+    { nome: "JC", preco: "75 meticais", img: "/imagens/bebidas/jc.jpg" },
+    { nome: "Castel Lite", preco: "65 meticais", img: "/imagens/bebidas/castel_lite.jpg" },
+    { nome: "Coca Cola (garrafa)", preco: "25 meticais", img: "/imagens/bebidas/coca_cola.jpg" },
+    { nome: "Coca Cola (lata)", preco: "50 meticais", img: "/imagens/bebidas/coca_cola.jpg" },
+    { nome: "Fanta (garrafa)", preco: "25 meticais", img: "/imagens/bebidas/fanta.jpg" },
+    { nome: "Fanta (lata)", preco: "50 meticais", img: "/imagens/bebidas/fanta.jpg" },
+    { nome: "Sprite (garrafa)", preco: "25 meticais", img: "/imagens/bebidas/sprite.jpg" },
+    { nome: "Sprite (lata)", preco: "50 meticais", img: "/imagens/bebidas/sprite.jpg" },
+    { nome: "Sumo Compal (1L)", preco: "130 meticais", img: "/imagens/bebidas/compal.jpg" },
+    { nome: "Sumo Compal (0,5L)", preco: "65 meticais", img: "/imagens/bebidas/compal.jpg" },
+    { nome: "Suminhos", preco: "25 meticais", img: "/imagens/bebidas/suminho.jpg" },
+    { nome: "Água (grande)", preco: "50 meticais", img: "/imagens/bebidas/agua.jpg" },
+    { nome: "Água (pequena)", preco: "25 meticais", img: "/imagens/bebidas/agua.jpg" },
   ],
   Comidas: [
-    "Frango:",
-    "  - Dose c/ batata e salada: 250 meticais",
-    "  - Dose c/ arroz e salada: 200 meticais",
-    "  - Dose c/ xima e salada: 200 meticais",
-    "  - Frango inteiro c/ xima/batata: 750/850 meticais",
-    "Carne:",
-    "  - Carne de porco: 500 meticais (1kg)",
-    "  - Guisado de vaca: 500 meticais",
-    "  - Rachel com batata: 130 meticais",
-    "Peixe:",
-    "  - Vermelho grelhado: 750 meticais",
-    "  - Cozido com legumes: 700 meticais",
+    { nome: "Frango c/ batata e salada", preco: "250 meticais", img: "/assets/frango.jpg" },
+    { nome: "Frango c/ arroz e salada", preco: "200 meticais", img: "/imagens/comidas/frango_arroz.jpg" },
+    { nome: "Frango c/ xima e salada", preco: "200 meticais", img: "/imagens/comidas/frango_xima.jpg" },
+    { nome: "Frango inteiro c/ xima", preco: "750 meticais", img: "/imagens/comidas/frango_inteiro.jpg" },
+    { nome: "Frango inteiro c/ batata", preco: "850 meticais", img: "/imagens/comidas/frango_inteiro.jpg" },
+    { nome: "Carne de porco (1kg)", preco: "500 meticais", img: "/imagens/comidas/porco.jpg" },
+    { nome: "Guisado de vaca", preco: "500 meticais", img: "/imagens/comidas/vaca.jpg" },
+    { nome: "Rachel c/ batata", preco: "130 meticais", img: "/imagens/comidas/rachel.jpg" },
+    { nome: "Vermelho grelhado", preco: "750 meticais", img: "/imagens/comidas/peixe_vermelho.jpg" },
+    { nome: "Cozido com legumes", preco: "700 meticais", img: "/imagens/comidas/cozido.jpg" },
   ],
 };
+
 const imagens = [
   { src: '/assets/degustacao (1).jpg', descricao: 'Degustacao' },
   { src: '/assets/corporativo (1).jpg', descricao: 'Corporativo' },
@@ -171,7 +176,7 @@ export default function Inicio() {
         </div>
       </section>
 
-      {/* Seção Sobre Nós */}
+      {/* Seccao Sobre Nós */}
       <section id="sobre" className="section sobre-nos">
         <div className="sobre-nos-container">
           <div className="sobre-nos-card">
@@ -221,9 +226,9 @@ export default function Inicio() {
 
 <section id="catalogo" className="section catalogo">
   <h2>Catálogo</h2>
-  <p>Explore o nosso menu básico. Pesquise ou escolha a categoria.</p>
+  <p>Explore o nosso menu básico. Escolha a categoria.</p>
 
-  {/* Filtros de categorias */}
+
   <div className="catalogo-filtros" style={{ marginBottom: '1rem' }}>
     {Object.keys(catalogoBasico).map(cat => (
       <button
@@ -236,16 +241,6 @@ export default function Inicio() {
       </button>
     ))}
   </div>
-
-  {/* Barra de pesquisa */}
-  <input
-    type="text"
-    placeholder="Pesquisar no menu.."
-    value={pesquisa}
-    onChange={e => setPesquisa(e.target.value)}
-    className="input-pesquisa"
-  />
-
 
   <div className="catalogo-itens">
     {itensFiltrados.length === 0 && <p>Nenhum item encontrado.</p>}
@@ -265,10 +260,13 @@ export default function Inicio() {
     ))}
   </div>
 
-  {/* Botão Ver Mais */}
+
   <div style={{ marginTop: 20, textAlign: 'center' }}>
     <button
-      onClick={() => setMostrarMenuCompleto(true)}
+      onClick={() => {
+        setPesquisa("");
+        setMostrarMenuCompleto(true);
+      }}
       style={{
         padding: '0.75rem 2rem',
         backgroundColor: '#ec7c21ff',
@@ -283,83 +281,130 @@ export default function Inicio() {
     </button>
   </div>
 
- {mostrarMenuCompleto && (
-  <div
-    className="overlay"
-    onClick={() => setMostrarMenuCompleto(false)}
-    style={{
-      position: 'fixed',
-      top: 0, left: 0, right: 0, bottom: 0,
-      backgroundColor: 'rgba(0,0,0,0.6)',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      zIndex: 9999,
-      padding: 20,
-    }}
-  >
+  {mostrarMenuCompleto && (
     <div
-      className="modal-card livro-abrir"
-      onClick={e => e.stopPropagation()}
+      className="overlay"
+      onClick={() => setMostrarMenuCompleto(false)}
       style={{
-        backgroundColor: 'white',
-        borderRadius: 12,
-        maxWidth: 600,
-        maxHeight: '80vh',
-        overflowY: 'auto',
-        padding: 25,
-        boxShadow: '0 8px 25px rgba(0,0,0,0.35)',
-        position: 'relative',
-        transformOrigin: 'left center',
-        transformStyle: 'preserve-3d',
-        backfaceVisibility: 'hidden',
+        position: 'fixed',
+        top: 0, left: 0, right: 0, bottom: 0,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 9999,
+        padding: 20,
       }}
     >
-      <button
-        onClick={() => setMostrarMenuCompleto(false)}
+      <div
+        className="modal-card livro-abrir"
+        onClick={e => e.stopPropagation()}
         style={{
-          position: 'absolute',
-          top: 15,
-          right: 15,
-          fontSize: 28,
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          color: '#fc711b',
-          fontWeight: 'bold',
-          transition: 'color 0.3s ease',
-          lineHeight: 1,
+          backgroundColor: 'white',
+          borderRadius: 12,
+          maxWidth: 800,
+          maxHeight: '80vh',
+          overflowY: 'auto',
+          padding: 25,
+          boxShadow: '0 8px 25px rgba(0,0,0,0.35)',
+          position: 'relative',
+          transformOrigin: 'left center',
+          transformStyle: 'preserve-3d',
+          backfaceVisibility: 'hidden',
         }}
-        aria-label="Fechar menu completo"
-        onMouseEnter={e => (e.currentTarget.style.color = '#c0392b')}
-        onMouseLeave={e => (e.currentTarget.style.color = '#fc711b')}
       >
-        ×
-      </button>
-      <h2 style={{ marginBottom: 20, borderBottom: '2px solid #fc711b', paddingBottom: 8 }}>Menu Completo</h2>
-      {Object.entries(menuCompleto).map(([categoria, itens]) => (
-        <div key={categoria} style={{ marginBottom: 25 }}>
-          <h3 style={{ borderBottom: '1px solid #ddd', paddingBottom: 6, color: '#fc711b' }}>{categoria}</h3>
-          <ul style={{ paddingLeft: 20 }}>
-            {itens.map((item, i) => (
-              <li key={i} style={{ marginBottom: 8, whiteSpace: 'pre-line', color: '#555', lineHeight: 1.5 }}>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+        <button
+          onClick={() => setMostrarMenuCompleto(false)}
+          style={{
+            position: 'absolute',
+            top: 15,
+            right: 15,
+            fontSize: 28,
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            color: '#fc711b',
+            fontWeight: 'bold',
+            transition: 'color 0.3s ease',
+            lineHeight: 1,
+          }}
+          aria-label="Fechar menu completo"
+          onMouseEnter={e => (e.currentTarget.style.color = '#c0392b')}
+          onMouseLeave={e => (e.currentTarget.style.color = '#fc711b')}
+        >
+          ×
+        </button>
+        <h2 style={{ marginBottom: 20, borderBottom: '2px solid #fc711b', paddingBottom: 8 }}>
+          Menu Completo
+        </h2>
+
+       
+        <input
+          type="text"
+          placeholder="Pesquisar no menu..."
+          value={pesquisa}
+          onChange={e => setPesquisa(e.target.value)}
+          style={{
+            width: '100%',
+            padding: '0.5rem',
+            marginBottom: '1rem',
+            border: '1px solid #ccc',
+            borderRadius: 6,
+          }}
+        />
+
+        {Object.entries(menuCompleto).map(([categoria, itens]) => {
+          const itensFiltradosModal = itens.filter(item =>
+            item.nome.toLowerCase().includes(pesquisa.toLowerCase())
+          );
+          if (itensFiltradosModal.length === 0) return null;
+
+          return (
+            <div key={categoria} style={{ marginBottom: 25 }}>
+              <h3 style={{ borderBottom: '1px solid #ddd', paddingBottom: 6, color: '#fc711b' }}>
+                {categoria}
+              </h3>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+                gap: '15px'
+              }}>
+                {itensFiltradosModal.map((item, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      border: '1px solid #eee',
+                      borderRadius: 8,
+                      padding: 10,
+                      textAlign: 'center',
+                      backgroundColor: '#fff',
+                    }}
+                  >
+                    {item.img && (
+                      <img
+                        src={item.img}
+                        alt={item.nome}
+                        style={{
+                          width: '100%',
+                          height: 120,
+                          objectFit: 'cover',
+                          borderRadius: 6,
+                          marginBottom: 8,
+                        }}
+                      />
+                    )}
+                    <h4 style={{ marginBottom: 5 }}>{item.nome}</h4>
+                    <p style={{ color: '#555', fontWeight: 'bold' }}>{item.preco}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
-  </div>
-)}
-
+  )}
 </section>
-
-     
-     
- 
-
-
       {/* Galeria */}
       <section id="galeria" className="section galeria">
         <div className="galeria-conteudo">
@@ -440,7 +485,7 @@ export default function Inicio() {
         </div>
       </section>
 
-      {/* Contacto */}
+      {/* seccao de  Contacto */}
       <section id="contacto" className="section">
         <h2>Contacto</h2>
         <form className="form-contacto">

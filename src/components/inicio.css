@@ -25,7 +25,7 @@
   top: 12px;
 }
 
-/* Botão hamburger */
+
 .menu-btn {
   outline: none;        
 }
@@ -138,7 +138,7 @@
   gap: 20px;
 }
 
-/* Mobile */
+/* cell */
 @media (max-width: 768px) {
   .desktop-nav {
     display: none;
@@ -557,8 +557,6 @@
   }
 }
 
-
-/* RESPONSIVO */
 @media (max-width: 768px) {
   .slide-legenda {
     font-size: 0.9rem;
@@ -573,7 +571,6 @@
   }
 }
 
-/* Depoimentos */
 .depoimentos {
   margin-top: 60px;
   text-align: center;
@@ -639,7 +636,7 @@
     font-size: 1rem;
   }
 }
-/* contacto */
+
 #contacto {
   display: flex;
   flex-direction: column;  
@@ -733,7 +730,7 @@
   gap: 40px;
   flex-wrap: wrap;
 }
-/*Eventos*/
+
 .eventos {
   padding: 3rem 2rem;
   background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
@@ -844,7 +841,6 @@
   background-color: #a24a11;
 }
 
-/* Responsividade */
 @media (max-width: 480px) {
   .eventos h2 {
     font-size: 2rem;
@@ -860,7 +856,7 @@
   }
 }
 
-/* rodapé*/
+
 .footer {
   background-color: #111;
   color: #fff;
@@ -1087,7 +1083,6 @@
 .overlay {
   animation: fadeIn 0.3s ease forwards;
 }
-
 .modal-card.livro-abrir {
   animation: abrirLivro 0.6s ease forwards;
   transform-origin: left center;
