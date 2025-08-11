@@ -1,17 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './inicio.css';
 
-export default function Inicio() {
-  const imagens = [
-    { src: '/assets/degustacao (1).jpg', descricao: ' Degustacao' },
-    { src: '/assets/corporativo (1).jpg', descricao: 'Corporativo' },
-    { src: '/assets/festa.jpg', descricao: 'Dia de festa' },
-    { src: '/assets/ex1.jpg', descricao: 'o complexo' },
-    { src: '/assets/degustacao (1).jpg', descricao: 'blaaaaa' }
-  ];
 
+const imagens = [
+  { src: '/assets/degustacao (1).jpg', descricao: 'Degustacao' },
+  { src: '/assets/corporativo (1).jpg', descricao: 'Corporativo' },
+  { src: '/assets/festa.jpg', descricao: 'Dia de festa' },
+  { src: '/assets/ex1.jpg', descricao: 'O complexo' },
+  { src: '/assets/degustacao (1).jpg', descricao: 'Blaaaaa' }
+];
+
+const depoimentos = [
+  { texto: "Adorámos a experiência, comida deliciosa e ambiente acolhedor!", autor: "Ernesto Vaz" },
+  { texto: "Sem dúvida o melhor restaurante da cidade.", autor: "Alexandre Muianga" },
+  { texto: "Voltaremos em breve com toda a família!", autor: "Jana Conjo" }
+];
+
+export default function Inicio() {
+  const [menuAberto, setMenuAberto] = useState(false);
   const [index, setIndex] = useState(0);
   const [mostrarMais, setMostrarMais] = useState(false);
+  const [depIndex, setDepIndex] = useState(0);
 
   const anterior = () => {
     setIndex(prevIndex =>
@@ -35,33 +44,43 @@ export default function Inicio() {
     const play = () => {
       autoplayRef.current();
     };
-    const interval = setInterval(play, 5000); 
+    const interval = setInterval(play, 5000);
     return () => clearInterval(interval);
   }, []);
-  const [depIndex, setDepIndex] = useState(0);
-
-const depoimentos = [
-  { texto: "Adorámos a experiência, comida deliciosa e ambiente acolhedor!", autor: "Ernesto Vaz" },
-  { texto: "Sem dúvida o melhor restaurante da cidade.", autor: "Alexandre Muianga" },
-  { texto: "Voltaremos em breve com toda a família!", autor: "Jana Conjo" },
-];
-
 
   return (
     <div>
-  
+     <div>
       <header className="header">
-        <img src="/assets/logo.png" alt="Logo" className="logo-header" />
-        <nav className="nav">
+        <img src="/assets/logo.png" alt="Logo" className="logo-header" width="120" height="60" />
+
+        <button
+          className={`menu-btn ${menuAberto ? 'active' : ''}`}
+          onClick={() => setMenuAberto(!menuAberto)}
+          aria-label="Abrir menu" >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav className="nav desktop-nav">
           <a href="#sobre">Sobre Nós</a>
           <a href="#galeria">Galeria</a>
           <a href="#eventos">Eventos</a>
           <a href="#contacto">Contacto</a>
         </nav>
+        <nav className={`menu-lateral ${menuAberto ? 'aberto' : ''}`}>
+          <a href="#sobre" onClick={() => setMenuAberto(false)}>Sobre Nós</a>
+          <a href="#galeria" onClick={() => setMenuAberto(false)}>Galeria</a>
+          <a href="#eventos" onClick={() => setMenuAberto(false)}>Eventos</a>
+          <a href="#contacto" onClick={() => setMenuAberto(false)}>Contacto</a>
+        </nav>
       </header>
 
-      
-      <section className="hero">
+      {menuAberto && <div className="overlay-menu" onClick={() => setMenuAberto(false)}></div>}
+    </div>
+  
+     <section className="hero">
         <div className="hero-content">
           <h1 className="hero-title">
             Mergulhe-se com uma <span className="highlight">Experiência</span><br />
@@ -75,141 +94,139 @@ const depoimentos = [
         </div>
 
         <div className="hero-image">
-          <img src="/assets/ex1.jpg" alt="Restaurante" loading="lazy"/>
+          <img src="/assets/ex1.jpg" alt="Restaurante" width="500" height="350" />
         </div>
       </section>
 
-{/* Seção Sobre Nós */}
-<section id="sobre" className="section sobre-nos">
-  <div className="sobre-nos-container">
-    <div className="sobre-nos-card">
-      <div className="sobre-nos-texto">
-        <h2>Sobre Nós</h2>
-        <p>
-          No <strong>Complexo Vaz</strong>, valorizamos a excelência gastronómica, o ambiente acolhedor
-          e um serviço que faz sentir-se em casa. Criámos este espaço para partilhar <strong>sabores únicos</strong>
-          e momentos especiais.
-        </p>
-        <button
-          className="btn-saber-mais"
-          onClick={() => setMostrarMais(true)}
-        >
-          Saber Mais
-        </button>
-      </div>
-    </div>
-  </div>
-
-  {/* Modal Sobreposto */}
-  {mostrarMais && (
-    <div className="overlay">
-      <div className="modal-card">
-        <button
-          className="btn-fechar"
-          onClick={() => setMostrarMais(false)}
-        >
-          ×
-        </button>
-        <div className="modal-content">
-          <div className="modal-texto">
-            <h3>Mais sobre o Complexo Vaz</h3>
-            <p>
-              Oferecemos experiências personalizadas para eventos especiais, menus exclusivos
-              e um ambiente pensado para surpreender os nossos clientes em cada detalhe.
-              Desde jantares privados a festas de aniversário, garantimos uma experiência única.
-            </p>
-          </div>
-          <div className="modal-imagem">
-            <img src="/assets/ex1.jpg" alt="Mais sobre nós" loading="lazy"/>
+      {/* Seção Sobre Nós */}
+      <section id="sobre" className="section sobre-nos">
+        <div className="sobre-nos-container">
+          <div className="sobre-nos-card">
+            <div className="sobre-nos-texto">
+              <h2>Sobre Nós</h2>
+              <p>
+                No <strong>Complexo Vaz</strong>, valorizamos a excelência gastronómica, o ambiente acolhedor
+                e um serviço que faz sentir-se em casa. Criámos este espaço para partilhar <strong>sabores únicos</strong>
+                e momentos especiais.
+              </p>
+              <button
+                className="btn-saber-mais"
+                onClick={() => setMostrarMais(true)}
+              >
+                Saber Mais
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  )}
-</section>
 
+        {mostrarMais && (
+          <div className="overlay">
+            <div className="modal-card">
+              <button
+                className="btn-fechar"
+                onClick={() => setMostrarMais(false)}
+              >
+                ×
+              </button>
+              <div className="modal-content">
+                <div className="modal-texto">
+                  <h3>Mais sobre o Complexo Vaz</h3>
+                  <p>
+                    Oferecemos experiências personalizadas para eventos especiais, menus exclusivos
+                    e um ambiente pensado para surpreender os nossos clientes em cada detalhe.
+                    Desde jantares privados a festas de aniversário, garantimos uma experiência única.
+                  </p>
+                </div>
+                <div className="modal-imagem">
+                  <img src="/assets/ex1.jpg" alt="Mais sobre nós" width="400" height="300" loading="lazy" />
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </section>
 
-{/* GALERIA */}
-<section id="galeria" className="section galeria">
-  <div className="galeria-conteudo">
-    <h2>Galeria</h2>
-    <p>
-      Explore alguns dos nossos pratos e momentos especiais no <strong>Complexo Vaz</strong>.
-    </p>
+      {/* Galeria */}
+      <section id="galeria" className="section galeria">
+        <div className="galeria-conteudo">
+          <h2>Galeria</h2>
+          <p>
+            Explore alguns dos nossos pratos e momentos especiais no <strong>Complexo Vaz</strong>.
+          </p>
 
-    <div className="slider">
-   
-      <div className="slider-imagem-container">
-        <img
-          src={imagens[index].src}
-          alt={`Prato ${index + 1}`}
-          className="slide-imagem fade" loading="lazy"
-        />
-        <p className="slide-legenda">{imagens[index].descricao}</p>
-      </div>
-      
-    </div>
+          <div className="slider">
+            <div className="slider-imagem-container">
+              <img
+                src={imagens[index].src}
+                alt={`Prato ${index + 1}`}
+                className="slide-imagem fade"
+                width="500"
+                height="350"
+                loading="lazy"
+              />
+              <p className="slide-legenda">{imagens[index].descricao}</p>
+            </div>
+          </div>
 
-    <div className="slider-bolinhas">
-      {imagens.map((_, i) => (
-        <span
-          key={i}
-          className={index === i ? 'active' : ''}
-          onClick={() => setIndex(i)}
-        ></span>
-      ))}
-    </div>
-    <div className="depoimentos">
-  <h3>O que dizem sobre nós</h3>
-  <div className="depoimento-card">
-    <p>"{depoimentos[depIndex].texto}"</p>
-    <span>- {depoimentos[depIndex].autor}</span>
-  </div>
-  <div className="depoimentos-bolinhas">
-    {depoimentos.map((_, i) => (
-      <span
-        key={i}
-        className={depIndex === i ? 'active' : ''}
-        onClick={() => setDepIndex(i)}
-      ></span>
-    ))}
-  </div>
-</div>
+          <div className="slider-bolinhas">
+            {imagens.map((_, i) => (
+              <span
+                key={i}
+                className={index === i ? 'active' : ''}
+                onClick={() => setIndex(i)}
+              ></span>
+            ))}
+          </div>
 
-  </div>
-</section>
+          <div className="depoimentos">
+            <h3>O que dizem sobre nós</h3>
+            <div className="depoimento-card">
+              <p>"{depoimentos[depIndex].texto}"</p>
+              <span>- {depoimentos[depIndex].autor}</span>
+            </div>
+            <div className="depoimentos-bolinhas">
+              {depoimentos.map((_, i) => (
+                <span
+                  key={i}
+                  className={depIndex === i ? 'active' : ''}
+                  onClick={() => setDepIndex(i)}
+                ></span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
-  
-<section id="eventos" className="section eventos">
-  <h2>Eventos</h2>
-  <p className="descricao-eventos">
-    Quer seja para uma celebração íntima ou uma grande festa, o Complexo Vaz é o local ideal para o seu evento. 
-    Descubra as nossas opções personalizadas para tornar o seu momento inesquecível.
-  </p>
+      {/* Eventos */}
+      <section id="eventos" className="section eventos">
+        <h2>Eventos</h2>
+        <p className="descricao-eventos">
+          Quer seja para uma celebração íntima ou uma grande festa, o Complexo Vaz é o local ideal para o seu evento.
+          Descubra as nossas opções personalizadas para tornar o seu momento inesquecível.
+        </p>
 
-  <div className="eventos-cards">
-    <article className="evento-card">
-      <img src="/assets/festa.jpg" alt="Festas Privadas" className="evento-img" loading="lazy"/>
-      <h3>Festas Privadas</h3>
-      <p>Espaços exclusivos para aniversários, despedidas de solteiro(a) e celebrações com amigos e família.</p>
-    </article>
+        <div className="eventos-cards">
+          <article className="evento-card">
+            <img src="/assets/festa.jpg" alt="Festas Privadas" className="evento-img" width="400" height="300" loading="lazy" />
+            <h3>Festas Privadas</h3>
+            <p>Espaços exclusivos para aniversários, despedidas de solteiro(a) e celebrações com amigos e família.</p>
+          </article>
 
-    <article className="evento-card">
-      <img src="/assets/corporativo (1).jpg" alt="Eventos Corporativos" className="evento-img" loading="lazy" />
-      <h3>Eventos Corporativos</h3>
-      <p>Ambiente profissional e acolhedor para reuniões, workshops e celebrações empresariais.</p>
-    </article>
+          <article className="evento-card">
+            <img src="/assets/corporativo (1).jpg" alt="Eventos Corporativos" className="evento-img" width="400" height="300" loading="lazy" />
+            <h3>Eventos Corporativos</h3>
+            <p>Ambiente profissional e acolhedor para reuniões, workshops e celebrações empresariais.</p>
+          </article>
 
-    <article className="evento-card">
-      <img src="/assets/degustacao (1).jpg" alt="Degustações & Cocktails" className="evento-img" loading="lazy" />
-      <h3>Degustações & Cocktails</h3>
-      <p>Experiências únicas de cocktails e harmonizações, com especialistas e ambiente descontraído.</p>
-    </article>
-  </div>
+          <article className="evento-card">
+            <img src="/assets/degustacao (1).jpg" alt="Degustações & Cocktails" className="evento-img" width="400" height="300" loading="lazy" />
+            <h3>Degustações & Cocktails</h3>
+            <p>Experiências únicas de cocktails e harmonizações, com especialistas e ambiente descontraído.</p>
+          </article>
+        </div>
+      </section>
 
-
-</section>
-{/* Contacto */}
+      {/* Contacto */}
       <section id="contacto" className="section">
         <h2>Contacto</h2>
         <form className="form-contacto">
@@ -220,41 +237,35 @@ const depoimentos = [
         </form>
       </section>
 
-       {/* footer */}
-
-  <footer className="footer">
-  <div className="footer-container">
-    
-    <div className="footer-info">
-     
-      <p>
-        No Complexo Vaz oferecemos uma experiência vibrante de restaurante e bar, perfeita para jantares,
-        eventos e relaxar. Descubra o nosso menu requintado e reserve o seu próximo encontro connosco!
-      </p>
-    </div>
-    <div className="footer-contactos">
-      <p>📞 +258 85 55 46089</p>
-      <p>📧 Complexo Vaz@gmail.com</p>
-      <p>📍 123 Av-Albazine, Magoanine, MZ</p>
-    </div>
-
-    <div className="footer-social">
-      <h4>Siga-nos</h4>
-      <div className="social-icons">
-        <a href="#"><i className="fab fa-facebook-f"></i></a>
-        <a href="#"><i className="fab fa-x-twitter"></i></a>
-        <a href="#"><i className="fab fa-instagram"></i></a>
-        <a href="#"><i className="far fa-envelope"></i></a>
-        <a href="#"><i className="fab fa-youtube"></i></a>
-      </div>
-    </div>
-  </div>
-
-  <div className="footer-bottom">
-    <p>&copy; {new Date().getFullYear()} Complexo Vaz. Todos os direitos reservados.</p>
-  </div>
-</footer>
-
+      {/* Footer */}
+      <footer className="footer">
+        <div className="footer-container">
+          <div className="footer-info">
+            <p>
+              No Complexo Vaz oferecemos uma experiência vibrante de restaurante e bar, perfeita para jantares,
+              eventos e relaxar. Descubra o nosso menu requintado e reserve o seu próximo encontro connosco!
+            </p>
+          </div>
+          <div className="footer-contactos">
+            <p>📞 +258 85 55 46089</p>
+            <p>📧 Complexo Vaz@gmail.com</p>
+            <p>📍 123 Av-Albazine, Magoanine, MZ</p>
+          </div>
+          <div className="footer-social">
+            <h4>Siga-nos</h4>
+            <div className="social-icons">
+              <a href="#"><i className="fab fa-facebook-f"></i></a>
+              <a href="#"><i className="fab fa-x-twitter"></i></a>
+              <a href="#"><i className="fab fa-instagram"></i></a>
+              <a href="#"><i className="far fa-envelope"></i></a>
+              <a href="#"><i className="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>&copy; {new Date().getFullYear()} Complexo Vaz. Todos os direitos reservados.</p>
+        </div>
+      </footer>
     </div>
   );
 }
