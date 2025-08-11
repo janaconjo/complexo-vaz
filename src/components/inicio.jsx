@@ -240,7 +240,7 @@ export default function Inicio() {
   {/* Barra de pesquisa */}
   <input
     type="text"
-    placeholder="Pesquisar no menu..."
+    placeholder="Pesquisar no menu.."
     value={pesquisa}
     onChange={e => setPesquisa(e.target.value)}
     className="input-pesquisa"
