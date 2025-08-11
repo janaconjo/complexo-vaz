@@ -2,22 +2,22 @@ import React, { useState, useEffect, useRef } from 'react';
 import './inicio.css';
 const catalogoBasico = {
   Vinhos: [
-    { nome: "Cabriz", preco: "700 MZN (garrafa)", foto: "/assets/vinho (1).jpg"},
-    { nome: "Dona Ermelinda", preco: "750 MZN (garrafa)", foto: "/assets/vinho2.jpg" },
-    { nome: "Alanda", preco: "400 MZN (garrafa)", foto: "/assets/vinho3.jpg" },
-    { nome: "Gordon", preco: "450 MZN (garrafa)", foto: "/assets/vinho4.jpg" },
+    { nome: "", preco: "700 MZN (garrafa)", foto: "/assets/vinho (1).jpg"},
+    { nome: "", preco: "750 MZN (garrafa)", foto: "/assets/vinho2.jpg" },
+    { nome: "", preco: "400 MZN (garrafa)", foto: "/assets/vinho3.jpg" },
+    { nome: "", preco: "450 MZN (garrafa)", foto: "/assets/vinho4.jpg" },
   ],
   Bebidas: [
-    { nome: "Amarula Normal", preco: "800 MZN", foto: "/assets/amarula.jpg" },
-    { nome: "Wild África", preco: "500 MZN (garrafa)", foto: "/assets/wild_africa.jpg" },
-    { nome: "2M (garrafa)", preco: "65 MZN", foto: "/assets/2m.jpg" },
-    { nome: "Impala (garrafa)", preco: "55 MZN", foto: "/assets/impala.jpg" },
-    { nome: "Coca Cola", preco: "25/50 MZN (garrafa/lata)", foto: "/assets/cocacola.jpg" },
+    { nome: "", preco: "800 MZN", foto: "/assets/amarula.jpg" },
+    { nome: "", preco: "500 MZN (garrafa)", foto: "/assets/wild_africa.jpg" },
+    { nome: "", preco: "65 MZN", foto: "/assets/2m.jpg" },
+    { nome: "", preco: "55 MZN", foto: "/assets/impala.jpg" },
+    { nome: "", preco: "25/50 MZN (garrafa/lata)", foto: "/assets/cocacola.jpg" },
   ],
   Comidas: [
-    { nome: "Frango c/ batata e salada", preco: "250 MZN", foto: "/assets/frango_batata.jpg" },
-    { nome: "Carne de porco (1kg)", preco: "500 MZN", foto: "/assets/carne_porco.jpg" },
-    { nome: "Vermelho grelhado", preco: "750 MZN", foto: "/assets/peixe_vermelho.jpg" },
+    { nome: "", preco: "250 MZN", foto: "/assets/frango_batata.jpg" },
+    { nome: "", preco: "500 MZN", foto: "/assets/carne_porco.jpg" },
+    { nome: "", preco: "750 MZN", foto: "/assets/peixe_vermelho.jpg" },
   ],
 };
 
