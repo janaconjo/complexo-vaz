@@ -964,7 +964,7 @@
   letter-spacing: 0.4px;
 
 }
-  /*!catalogo*/
+ /*!catalogo*/
 .catalogo-itens {
   display: grid;
   grid-template-columns: 1fr; 
@@ -1009,16 +1009,17 @@
   margin-top: auto;
 }
 
+/* Barra de pesquisa sem zoom no iOS */
 .input-pesquisa {
   width: 100%;
- font-size: 16px; 
+  font-size: 16px; /* tamanho mínimo para evitar zoom no mobile */
   max-width: 350px; 
-  padding: 0.5rem;
-  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
   border: 1px solid #ddd;
   border-radius: 6px;
   transition: max-width 0.3s ease;
   box-sizing: border-box;
+  outline: none;
 }
 
 @media (min-width: 900px) {
@@ -1037,8 +1038,9 @@
   border-radius: 15px;
   margin-bottom: 0.75rem;
 }
+
 .catalogo-filtros button {
-   font-size: 16px; 
+  font-size: 16px; 
   margin-right: 1rem;
   padding: 0.5rem 1rem;
   background-color: #eee;
@@ -1061,32 +1063,36 @@
   box-shadow: 0 0 8px rgba(252, 113, 27, 0.7);
 }
 
+/* Animações */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-
 @keyframes abrirLivro {
   0% {
-    transform: perspective(800px) rotateY(-90deg);
+    transform: perspective(1200px) rotateY(-90deg) scale(0.95);
     opacity: 0;
+    box-shadow: none;
   }
-  60% {
-    transform: perspective(800px) rotateY(20deg);
+  40% {
+    transform: perspective(1200px) rotateY(20deg) scale(1.02);
     opacity: 1;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
   }
   100% {
-    transform: perspective(800px) rotateY(0deg);
+    transform: perspective(1200px) rotateY(0deg) scale(1);
     opacity: 1;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.35);
   }
 }
 
 .overlay {
   animation: fadeIn 0.3s ease forwards;
 }
+
 .modal-card.livro-abrir {
-  animation: abrirLivro 0.6s ease forwards;
+  animation: abrirLivro 0.7s ease forwards;
   transform-origin: left center;
   transform-style: preserve-3d;
   backface-visibility: hidden;
