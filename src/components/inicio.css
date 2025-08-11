@@ -966,7 +966,131 @@
   color: #aaa;
   font-size: 13px;
   letter-spacing: 0.4px;
+
+}
+  /*!catalogo*/
+.catalogo-itens {
+  display: grid;
+  grid-template-columns: 1fr; 
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 0 1rem;
+}
+
+.catalogo-item {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.catalogo-item:hover {
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.catalogo-item .icone {
+  font-size: 2.5rem;
+  color: #fc711b;
+  margin-bottom: 0.5rem;
+}
+
+.catalogo-item h3 {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.catalogo-item .preco {
+  font-weight: 600;
+  color: #c0392b;
+  font-size: 1rem;
+  margin-top: auto;
+}
+
+.input-pesquisa {
+  width: 100%;
+  max-width: 350px; 
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  transition: max-width 0.3s ease;
+  box-sizing: border-box;
+}
+
+@media (min-width: 900px) {
+  .catalogo-itens {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+  .input-pesquisa {
+    max-width: 600px; 
+  }
+}
+
+.catalogo-item-foto {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 0.75rem;
+}
+.catalogo-filtros button {
+  margin-right: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #eee;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: background-color 0.3s, color 0.3s;
+  color: #333;
+}
+
+.catalogo-filtros button:hover {
+  background-color: #fc711b;
+  color: white;
+}
+
+.catalogo-filtros button.ativo {
+  background-color: #fc711b;
+  color: white;
+  box-shadow: 0 0 8px rgba(252, 113, 27, 0.7);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 
+@keyframes abrirLivro {
+  0% {
+    transform: perspective(800px) rotateY(-90deg);
+    opacity: 0;
+  }
+  60% {
+    transform: perspective(800px) rotateY(20deg);
+    opacity: 1;
+  }
+  100% {
+    transform: perspective(800px) rotateY(0deg);
+    opacity: 1;
+  }
+}
 
+.overlay {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.modal-card.livro-abrir {
+  animation: abrirLivro 0.6s ease forwards;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}

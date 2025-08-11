@@ -1,7 +1,72 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './inicio.css';
+const catalogoBasico = {
+  Vinhos: [
+    { nome: "Cabriz", preco: "700 MZN (garrafa)", foto: "/assets/vinho (1).jpg"},
+    { nome: "Dona Ermelinda", preco: "750 MZN (garrafa)", foto: "/assets/vinho2.jpg" },
+    { nome: "Alanda", preco: "400 MZN (garrafa)", foto: "/assets/vinho3.jpg" },
+    { nome: "Gordon", preco: "450 MZN (garrafa)", foto: "/assets/vinho4.jpg" },
+  ],
+  Bebidas: [
+    { nome: "Amarula Normal", preco: "800 MZN", foto: "/assets/amarula.jpg" },
+    { nome: "Wild África", preco: "500 MZN (garrafa)", foto: "/assets/wild_africa.jpg" },
+    { nome: "2M (garrafa)", preco: "65 MZN", foto: "/assets/2m.jpg" },
+    { nome: "Impala (garrafa)", preco: "55 MZN", foto: "/assets/impala.jpg" },
+    { nome: "Coca Cola", preco: "25/50 MZN (garrafa/lata)", foto: "/assets/cocacola.jpg" },
+  ],
+  Comidas: [
+    { nome: "Frango c/ batata e salada", preco: "250 MZN", foto: "/assets/frango_batata.jpg" },
+    { nome: "Carne de porco (1kg)", preco: "500 MZN", foto: "/assets/carne_porco.jpg" },
+    { nome: "Vermelho grelhado", preco: "750 MZN", foto: "/assets/peixe_vermelho.jpg" },
+  ],
+};
 
-
+// Menu completo (mais detalhado)
+const menuCompleto = {
+  Vinhos: [
+    "Cabriz: 700 meticais (garrafa)",
+    "Dona Ermelinda: 750 meticais (garrafa)",
+    "Alanda: 400 meticais (garrafa)",
+    "Gordon: 450 meticais (garrafa)",
+  ],
+  Bebidas: [
+    "Amarula Normal: 800 meticais",
+    "Wild África: 500 meticais (garrafa)",
+    "Cervejas:",
+    "  - 2M: 65 meticais (garrafa), 50 meticais (txoti)",
+    "  - Impala: 55 meticais (garrafa), 50 meticais (lata)",
+    "  - Txilar: 50 meticais (garrafa)",
+    "  - Heineken: 80 meticais (txoti)",
+    "  - Hunter Gold: 65 meticais",
+    "  - Brutal: 80 meticais",
+    "  - Savana Dry: 80 meticais",
+    "  - Savana Lemone: 85 meticais",
+    "  - May Faire: 75 meticais",
+    "  - JC: 75 meticais",
+    "  - Castel Lite: 65 meticais",
+    "Refrigerantes e Sumos:",
+    "  - Coca Cola: 25/50 meticais (garrafa/lata)",
+    "  - Fanta: 25/50 meticais (garrafa/lata)",
+    "  - Sprite: 25/50 meticais (garrafa/lata)",
+    "  - Sumo Compal: 130 meticais (1L), 65 meticais (0,5L)",
+    "  - Suminhos: 25 meticais",
+    "  - Água: 50 meticais (grande), 25 meticais (pequena)",
+  ],
+  Comidas: [
+    "Frango:",
+    "  - Dose c/ batata e salada: 250 meticais",
+    "  - Dose c/ arroz e salada: 200 meticais",
+    "  - Dose c/ xima e salada: 200 meticais",
+    "  - Frango inteiro c/ xima/batata: 750/850 meticais",
+    "Carne:",
+    "  - Carne de porco: 500 meticais (1kg)",
+    "  - Guisado de vaca: 500 meticais",
+    "  - Rachel com batata: 130 meticais",
+    "Peixe:",
+    "  - Vermelho grelhado: 750 meticais",
+    "  - Cozido com legumes: 700 meticais",
+  ],
+};
 const imagens = [
   { src: '/assets/degustacao (1).jpg', descricao: 'Degustacao' },
   { src: '/assets/corporativo (1).jpg', descricao: 'Corporativo' },
@@ -21,6 +86,14 @@ export default function Inicio() {
   const [index, setIndex] = useState(0);
   const [mostrarMais, setMostrarMais] = useState(false);
   const [depIndex, setDepIndex] = useState(0);
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState("Vinhos");
+  const [pesquisa, setPesquisa] = useState("");
+  const [mostrarMenuCompleto, setMostrarMenuCompleto] = useState(false);
+
+
+  const itensFiltrados = catalogoBasico[categoriaSelecionada].filter(item =>
+    item.nome.toLowerCase().includes(pesquisa.toLowerCase()));
+
 
   const anterior = () => {
     setIndex(prevIndex =>
@@ -144,7 +217,148 @@ export default function Inicio() {
             </div>
           </div>
         )}
-      </section>
+        </section>
+
+<section id="catalogo" className="section catalogo">
+  <h2>Catálogo</h2>
+  <p>Explore o nosso menu básico. Pesquise ou escolha a categoria.</p>
+
+  {/* Filtros de categorias */}
+  <div className="catalogo-filtros" style={{ marginBottom: '1rem' }}>
+    {Object.keys(catalogoBasico).map(cat => (
+      <button
+        key={cat}
+        className={categoriaSelecionada === cat ? 'ativo' : ''}
+        onClick={() => setCategoriaSelecionada(cat)}
+        style={{ marginRight: 8 }}
+      >
+        {cat}
+      </button>
+    ))}
+  </div>
+
+  {/* Barra de pesquisa */}
+  <input
+    type="text"
+    placeholder="Pesquisar no menu..."
+    value={pesquisa}
+    onChange={e => setPesquisa(e.target.value)}
+    className="input-pesquisa"
+  />
+
+
+  <div className="catalogo-itens">
+    {itensFiltrados.length === 0 && <p>Nenhum item encontrado.</p>}
+    {itensFiltrados.map((item, i) => (
+      <div key={i} className="catalogo-item">
+        {item.foto && (
+          <img
+            src={item.foto}
+            alt={item.nome}
+            loading="lazy"
+            className="catalogo-item-foto"
+          />
+        )}
+        <h3>{item.nome}</h3>
+        <p className="preco">{item.preco}</p>
+      </div>
+    ))}
+  </div>
+
+  {/* Botão Ver Mais */}
+  <div style={{ marginTop: 20, textAlign: 'center' }}>
+    <button
+      onClick={() => setMostrarMenuCompleto(true)}
+      style={{
+        padding: '0.75rem 2rem',
+        backgroundColor: '#ec7c21ff',
+        color: 'white',
+        border: 'none',
+        borderRadius: 6,
+        cursor: 'pointer',
+        fontWeight: 'bold',
+      }}
+    >
+      Ver Menu Completo
+    </button>
+  </div>
+
+ {mostrarMenuCompleto && (
+  <div
+    className="overlay"
+    onClick={() => setMostrarMenuCompleto(false)}
+    style={{
+      position: 'fixed',
+      top: 0, left: 0, right: 0, bottom: 0,
+      backgroundColor: 'rgba(0,0,0,0.6)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      zIndex: 9999,
+      padding: 20,
+    }}
+  >
+    <div
+      className="modal-card livro-abrir"
+      onClick={e => e.stopPropagation()}
+      style={{
+        backgroundColor: 'white',
+        borderRadius: 12,
+        maxWidth: 600,
+        maxHeight: '80vh',
+        overflowY: 'auto',
+        padding: 25,
+        boxShadow: '0 8px 25px rgba(0,0,0,0.35)',
+        position: 'relative',
+        transformOrigin: 'left center',
+        transformStyle: 'preserve-3d',
+        backfaceVisibility: 'hidden',
+      }}
+    >
+      <button
+        onClick={() => setMostrarMenuCompleto(false)}
+        style={{
+          position: 'absolute',
+          top: 15,
+          right: 15,
+          fontSize: 28,
+          background: 'none',
+          border: 'none',
+          cursor: 'pointer',
+          color: '#fc711b',
+          fontWeight: 'bold',
+          transition: 'color 0.3s ease',
+          lineHeight: 1,
+        }}
+        aria-label="Fechar menu completo"
+        onMouseEnter={e => (e.currentTarget.style.color = '#c0392b')}
+        onMouseLeave={e => (e.currentTarget.style.color = '#fc711b')}
+      >
+        ×
+      </button>
+      <h2 style={{ marginBottom: 20, borderBottom: '2px solid #fc711b', paddingBottom: 8 }}>Menu Completo</h2>
+      {Object.entries(menuCompleto).map(([categoria, itens]) => (
+        <div key={categoria} style={{ marginBottom: 25 }}>
+          <h3 style={{ borderBottom: '1px solid #ddd', paddingBottom: 6, color: '#fc711b' }}>{categoria}</h3>
+          <ul style={{ paddingLeft: 20 }}>
+            {itens.map((item, i) => (
+              <li key={i} style={{ marginBottom: 8, whiteSpace: 'pre-line', color: '#555', lineHeight: 1.5 }}>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
+</section>
+
+     
+     
+ 
+
 
       {/* Galeria */}
       <section id="galeria" className="section galeria">
