@@ -12,7 +12,7 @@ const catalogoBasico = {
     { nome: "Wild África", preco: "500 meticais (garrafa)", img: "/imagens/bebidas/wild_africa.jpg" },
     { nome: "2M (garrafa)", preco: "65 meticais", img: "/assets/cerveja.jpg" },
     { nome: "2M (txoti)", preco: "50 meticais", img: "/imagens/bebidas/2m.jpg" },
-   
+  
   ],
   Comidas: [
    { nome: "Frango c/ batata e salada", preco: "250 meticais", img: "/assets/frango.jpg" },

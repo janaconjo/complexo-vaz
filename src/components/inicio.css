@@ -1011,6 +1011,7 @@
 
 .input-pesquisa {
   width: 100%;
+ font-size: 16px; 
   max-width: 350px; 
   padding: 0.5rem;
   font-size: 1rem;
@@ -1037,6 +1038,7 @@
   margin-bottom: 0.75rem;
 }
 .catalogo-filtros button {
+   font-size: 16px; 
   margin-right: 1rem;
   padding: 0.5rem 1rem;
   background-color: #eee;
