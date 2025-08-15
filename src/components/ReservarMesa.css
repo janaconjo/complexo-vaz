@@ -1,0 +1,198 @@
+:root{
+  --laranja: #ec7c21;
+  --laranja-escuro: #c85e0b;
+  --creme: #fff7f0;
+  --cinza-borda: #dcdcdc;
+  --texto: #2b2b2b;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+.reservar-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  color: var(--texto);
+  background: var(--creme);
+}
+
+.top-bar {
+  width: 90%;
+  max-width: 720px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.btn-voltar {
+  display: inline-block;
+  font-size: 1.3rem;
+  color: var(--laranja);
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-voltar:hover {
+  background: rgba(236,124,33,.1);
+  transform: translateX(-2px);
+}
+
+.animacao-bonecos,
+h3,
+.descricao,
+.reservar-form {
+  width: 90%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+h3 {
+  text-align: center;
+  color: var(--laranja);
+  margin-bottom: .25rem;
+}
+
+p {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.reservar-form {
+  display: grid;
+  gap: 12px;
+  background: var(--creme);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--cinza-borda);
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+  width: 100%;
+}
+
+.reservar-form input,
+.reservar-form select,
+.reservar-form textarea,
+.reservar-form button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--cinza-borda);
+  font-size: 1rem;
+  outline: none;
+}
+
+.reservar-form input:focus,
+.reservar-form select:focus,
+.reservar-form textarea:focus {
+  border-color: var(--laranja);
+  box-shadow: 0 0 0 3px rgba(236,124,33,.15);
+}
+
+.reservar-form button {
+  background-color: var(--laranja);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease;
+}
+
+.reservar-form button:hover {
+  transform: translateY(-1px);
+  background-color: var(--laranja-escuro);
+  box-shadow: 0 10px 18px rgba(200,94,11,.22);
+}
+
+.duas-colunas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.animacao-bonecos {
+  position: relative;
+  height: 120px;
+  margin-bottom: 14px;
+}
+
+.animacao-bonecos::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 18px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(236,124,33,.1), rgba(236,124,33,.6), rgba(236,124,33,.1));
+}
+
+.boneco {
+  position: absolute;
+  bottom: 20px;
+  width: 60px;
+  height: 100px;
+  transform-origin: center bottom;
+  animation: andar 10s linear infinite, saltitar 1.8s ease-in-out infinite;
+}
+
+.boneco::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffd7b3 20%, #ffb980 48%, #ff8c42 100%);
+  box-shadow: 0 2px 0 rgba(0,0,0,.08);
+}
+
+.boneco::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 38px;
+  width: 20px;
+  height: 54px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #ffb347, #ff7a1a);
+  box-shadow: 0 6px 10px rgba(236,124,33,.25);
+}
+
+.boneco1 { animation-delay: 0s, 0s; }
+.boneco2 { animation-delay: 5s, 0.9s; }
+
+@keyframes andar{
+  0%   { left: -80px; transform: translateY(0) scaleX(1); }
+  45%  { left: calc(100% + 80px); transform: translateY(0) scaleX(1); }
+  50%  { left: calc(100% + 80px); transform: translateY(0) scaleX(-1); }
+  95%  { left: -80px; transform: translateY(0) scaleX(-1); }
+  100% { left: -80px; transform: translateY(0) scaleX(1); }
+}
+
+@keyframes saltitar{
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-4px); }
+}
+
+@media (max-width: 720px){
+  .duas-colunas { grid-template-columns: 1fr; }
+  .boneco { width: 52px; height: 90px; }
+  .boneco::before { width: 32px; height: 32px; }
+  .boneco::after { width: 18px; height: 48px; }
+  .reservar-page { padding: 1.5rem; justify-content: flex-start; }
+}
