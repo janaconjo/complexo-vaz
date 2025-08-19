@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './inicio.css';
-import { Link } from 'react-router-dom';
-
 const catalogoBasico = {
   Vinhos: [
     { nome: "Cabriz", preco: "700 MZN (garrafa)", foto: "/assets/vinho (1).jpg"},
@@ -170,10 +168,7 @@ export default function Inicio() {
             Descubra uma experiência gastronómica única no Complexo Vaz, onde o nosso menu é uma
             coleção vibrante de comida deliciosa e cocktails inovadores.
           </p>
-        <Link className="hero-button" to="/ReservarMesa">
-  Reservar uma Mesa →
-</Link>
-
+          <button className="hero-button">Reservar uma Mesa →</button>
         </div>
 
         <div className="hero-image">
@@ -532,4 +527,4 @@ export default function Inicio() {
       </footer>
     </div>
   );
-}
+}  
