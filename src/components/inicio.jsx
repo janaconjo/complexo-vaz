@@ -168,7 +168,7 @@ export default function Inicio() {
             Descubra uma experiência gastronómica única no Complexo Vaz, onde o nosso menu é uma
             coleção vibrante de comida deliciosa e cocktails inovadores.
           </p>
-          <button className="hero-button">Reservar uma Mesa →</button>
+          <button className="hero-button">Reservar uma Mesa </button>
         </div>
 
         <div className="hero-image">
