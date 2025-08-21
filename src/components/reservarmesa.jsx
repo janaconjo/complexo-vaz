@@ -1,28 +1,91 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import "./inicio.css";
+import { motion } from "framer-motion";
+import './reservarmesa.css';
 
 export default function ReservarMesa() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: { 
+      opacity: 1,
+      transition: { staggerChildren: 0.15 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 40, opacity: 0 },
+    show: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 120 } }
+  };
+
   return (
-    <section className="section" style={{ maxWidth: 900, margin: "40px auto", padding: "0 16px" }}>
-      <h2 style={{ marginBottom: 10 }}>Reservar uma Mesa</h2>
-      <p style={{ marginBottom: 20 }}>
-        Deixa-nos os teus dados e entraremos em contacto para confirmar a reserva.
-      </p>
+    <section className="section ui">
+      
 
-      <form className="form-contacto" onSubmit={(e) => { e.preventDefault(); alert("Reserva enviada!"); }}>
-        <input type="text" name="nome" placeholder="Nome" required />
-        <input type="tel" name="telefone" placeholder="Telefone" required />
-        <input type="date" name="data" required />
-        <input type="time" name="hora" required />
-        <input type="number" name="pessoas" placeholder="N.º de pessoas" min="1" required />
-        <textarea name="observacoes" placeholder="Observações (opcional)"></textarea>
-        <button type="submit">Confirmar Pedido</button>
-      </form>
+     <div className="bem-vindo-container">
+  <h1 className="bem-vindo">
+    Bem-vindo ao 
+    <span className="rotating-text">
+      <span>Complexo Vaz</span>
+      <span>É Cool!</span>
+    </span>
+  </h1>
+</div>
+      <motion.div
+        className="form-container"
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+      >
+        <motion.h2 className="titulo" variants={itemVariants}>
+          Reservar uma Mesa
+        </motion.h2>
+        <motion.p className="descricao" variants={itemVariants}>
+          Preenche os teus dados para confirmar a reserva.
+        </motion.p>
 
-      <div style={{ marginTop: 20 }}>
-        <Link to="/" className="hero-button">← Voltar ao Início</Link>
-      </div>
+        <motion.form
+          className="form-contacto"
+          onSubmit={(e) => { e.preventDefault(); alert("Reserva enviada!"); }}
+        >
+          <motion.div className="input-group" variants={itemVariants}>
+            <span className="icon">👤</span>
+            <input type="text" name="nome" placeholder="Nome completo" required />
+          </motion.div>
+
+          <motion.div className="input-group" variants={itemVariants}>
+            <span className="icon">📞</span>
+            <input type="tel" name="telefone" placeholder="Telefone" required />
+          </motion.div>
+
+          <motion.div className="input-group" variants={itemVariants}>
+            <span className="icon">📅</span>
+            <input type="date" name="data" required />
+          </motion.div>
+
+          <motion.div className="input-group" variants={itemVariants}>
+            <span className="icon">⏰</span>
+            <input type="time" name="hora" required />
+          </motion.div>
+
+          <motion.div className="input-group" variants={itemVariants}>
+            <span className="icon">👥</span>
+            <input type="number" name="pessoas" placeholder="N.º de pessoas" min="1" required />
+          </motion.div>
+
+          <motion.textarea
+            name="observacoes"
+            placeholder="Observações (opcional)"
+            variants={itemVariants}
+          />
+
+          <motion.button
+            type="submit"
+            variants={itemVariants}
+            whileHover={{ scale: 1.05, backgroundColor: "#e47534ff", color: "#fff" }}
+          >
+            Confirmar Pedido
+          </motion.button>
+        </motion.form>
+      </motion.div>
     </section>
   );
 }

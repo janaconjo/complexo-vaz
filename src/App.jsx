@@ -10,7 +10,6 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Inicio />} />
           <Route path="/reservarmesa" element={<ReservarMesa />} />
-          {/* fallback: qualquer rota desconhecida volta ao início */}
           <Route path="*" element={<Inicio />} />
         </Routes>
       </main>
