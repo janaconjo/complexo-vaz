@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Inicio from "./components/Inicio";
+import Inicio from "./components/inicio";
 import ReservarMesa from "./components/reservarmesa";
 
 export default function App() {
