@@ -1,13 +1,19 @@
-// App.jsx
 import React from "react";
-import Inicio from "./components/inicio";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Inicio from "./components/Inicio";
+import ReservarMesa from "./components/reservarmesa";
 
-function App() {
+export default function App() {
   return (
-    <main>
-      <Inicio />
-    </main>
+    <BrowserRouter>
+      <main>
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/reservarmesa" element={<ReservarMesa />} />
+          {/* fallback: qualquer rota desconhecida volta ao início */}
+          <Route path="*" element={<Inicio />} />
+        </Routes>
+      </main>
+    </BrowserRouter>
   );
 }
-
-export default App;
